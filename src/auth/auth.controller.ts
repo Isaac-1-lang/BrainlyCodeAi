@@ -2,6 +2,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   Post,
   Req,
@@ -11,6 +12,7 @@ import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
 import { AuthDto } from "./dto";
 import { LoginDto } from "./dto/login.dto";
+import { jwtDecode } from "jwt-decode"; 
 
 @Controller("auth")
 export class AuthController {
@@ -46,10 +48,27 @@ export class AuthController {
   }
 
   @Post("refresh")
-  async refresh(@Req() req: Request, @Res() res: Response) {
+async refresh(@Req() req: Request, @Res() res: Response) {
+  const refresh_token = req.cookies["refresh_token"];
+  const { access_token, refresh_token: new_refresh_token, user } = await this.authService.refresh(refresh_token);
+
+  // Set new refresh token cookie (rotation)
+  res.cookie('refresh_token', new_refresh_token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+
+  return res.json({ access_token, user });
+}
+
+  @Get("get-me")
+  async getMe(@Req() req: Request) {
     const refresh_token = req.cookies["refresh_token"];
-    const { access_token, user } = await this.authService.refresh(refresh_token);
-    return res.json({ access_token, user });
+    const token = jwtDecode<any>(refresh_token);
+
+    return this.authService.getMe(token);
   }
 
   @Post("logout")

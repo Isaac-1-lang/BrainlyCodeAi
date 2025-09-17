@@ -140,6 +140,23 @@ export class AuthService {
     };
   }
 
+  async getMe(token: object) {
+     return await this.prisma.user.findUnique({
+      where: {
+        id: token['sub'],
+      },
+      select: { 
+        id: true, 
+        email: true, 
+        username: true, 
+        role: true, 
+        isPremium: true, 
+        createdAt: true, 
+        updatedAt: true 
+      },
+    });
+  }
+
   // --- LOGOUT ---
   // Note: if you store refresh tokens in DB for revocation you should delete/invalidate here.
   logout() {
