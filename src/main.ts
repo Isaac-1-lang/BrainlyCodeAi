@@ -18,7 +18,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
-  
+
   app.use(cookieParser());
 
   app.useStaticAssets(resolve(__dirname, '.', 'uploads'), {
