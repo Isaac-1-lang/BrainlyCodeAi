@@ -9,12 +9,12 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly configService: ConfigService,
-  ) {}
+  ) { }
 
   // Google OAuth
   @Get('google')
   @UseGuards(AuthGuard('google'))
-  async googleAuth() {}
+  async googleAuth() { }
 
   @Get('google/redirect')
   @UseGuards(AuthGuard('google'))
@@ -49,7 +49,7 @@ export class AuthController {
   // GitHub OAuth
   @Get('github')
   @UseGuards(AuthGuard('github'))
-  async githubAuth() {}
+  async githubAuth() { }
 
   @Get('github/redirect')
   @UseGuards(AuthGuard('github'))
@@ -82,10 +82,10 @@ export class AuthController {
         maxAge: 7 * 24 * 60 * 60 * 1000,
       });
 
-      const frontendUrl = this.configService.get('FRONTEND_URL') || 'http://localhost:5173';
+      const frontendUrl = this.configService.get('FRONTEND_URL');
       return res.redirect(`${frontendUrl}/oauth-success?token=${access_token}`);
     } catch (err: any) {
-      const frontendUrl = this.configService.get('FRONTEND_URL') || 'http://localhost:5173';
+      const frontendUrl = this.configService.get('FRONTEND_URL');
       return res.redirect(
         `${frontendUrl}/auth/error?message=${encodeURIComponent(err.message)}`,
       );

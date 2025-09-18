@@ -87,7 +87,6 @@ export class AuthService {
     return { access_token: access_token, refresh_token: refresh_token, user: { id: user.id, email: user.email, role: user.role ?? "USER", isPremium: user.isPremium } }
   }
 
-  // --- REFRESH ---
   // Accepts the refresh token string (from cookie), verifies it, and returns new tokens.
   async refresh(refreshToken: string | undefined): Promise<{ access_token: string; refresh_token: string; user: { id: number; email: string; role: string | null; isPremium: boolean } }> {
     if (!refreshToken) {
