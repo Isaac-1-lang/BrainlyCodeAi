@@ -12,11 +12,11 @@ import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
 import { AuthDto } from "./dto";
 import { LoginDto } from "./dto/login.dto";
-import { jwtDecode } from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 
 @Controller("auth")
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   // --- SIGNUP ---
   @Post("signup")
@@ -39,29 +39,21 @@ export class AuthController {
 
     res.cookie('refresh_token', refresh_token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === 'production', // true on Render.com
       sameSite: 'lax',
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    return res.json({ access_token, user});
+    res.json({ access_token, user });
   }
 
-  @Post("refresh")
-async refresh(@Req() req: Request, @Res() res: Response) {
-  const refresh_token = req.cookies["refresh_token"];
-  const { access_token, refresh_token: new_refresh_token, user } = await this.authService.refresh(refresh_token);
-
-  // Set new refresh token cookie (rotation)
-  res.cookie('refresh_token', new_refresh_token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-  });
-
-  return res.json({ access_token, user });
-}
+  @Post('refresh')
+  async refresh(@Req() req: Request, @Res() res: Response) {
+    const refreshToken = req.cookies['refresh_token'];
+    if (!refreshToken) return res.status(401).json({ message: 'Refresh token missing' });
+    const { access_token, user } = await this.authService.refresh(refreshToken);
+    res.json({ access_token, user });
+  }
 
   @Get("get-me")
   async getMe(@Req() req: Request) {
