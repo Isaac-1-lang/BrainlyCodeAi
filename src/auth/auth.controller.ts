@@ -26,7 +26,7 @@ export class AuthController {
     res.cookie("refresh_token", refresh_token, {
       httpOnly: true,
       secure: true,
-      sameSite: "lax",
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -40,7 +40,7 @@ export class AuthController {
     res.cookie('refresh_token', refresh_token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', // true on Render.com
-      sameSite: 'lax',
+      sameSite: 'none',
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
