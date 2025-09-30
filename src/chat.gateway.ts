@@ -12,6 +12,7 @@ import { Server, Socket } from 'socket.io';
     origin: [
       'http://localhost:5173',
       'https://frontend-mdy5.onrender.com',
+      'https://brainly-code.onrender.com'
     ],
     methods: ['GET', 'POST'],
     credentials: true,

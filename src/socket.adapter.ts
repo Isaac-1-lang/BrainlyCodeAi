@@ -9,7 +9,6 @@ export class SocketIoAdapter extends IoAdapter {
       cors: {
         origin: [
           "https://brainly-code.onrender.com",
-          "https://frontend-mdy5.onrender.com",
           "http://localhost:5173", // For local dev
           "https://backend-hx6c.onrender.com", // If needed for same-origin testing
         ],
