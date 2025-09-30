@@ -6,6 +6,7 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { resolve } from "path";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import * as cookieParser from "cookie-parser";
+import { SocketIoAdapter } from './socket.adapter'; // Adjust path if needed
 
 async function bootstrap() {
   console.log('Starting NestJS application...');
@@ -25,7 +26,6 @@ async function bootstrap() {
     prefix: '/uploads/',
   });
 
-
   app.enableCors({
     origin: [
       "https://brainly-code.onrender.com",
@@ -35,6 +35,9 @@ async function bootstrap() {
     ],
     credentials: true,
   });
+
+  // Apply the custom Socket.IO adapter
+  app.useWebSocketAdapter(new SocketIoAdapter(app));
 
   // Swagger
   const config = new DocumentBuilder()
@@ -48,8 +51,10 @@ async function bootstrap() {
   SwaggerModule.setup("api", app, document);
 
   const server = app.getHttpServer();
-  server.setTimeout(20 * 60 * 1000); // 10 mins
+  server.setTimeout(20 * 60 * 1000); // 20 mins (you had 10, but updated to match comment)
 
   await app.listen(process.env.PORT || 3000);
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
+
 void bootstrap();
