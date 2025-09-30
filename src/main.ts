@@ -29,6 +29,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       "https://brainly-code.onrender.com",
+      "https://frontend-mdy5.onrender.com",
       "http://localhost:5173",
       "https://backend-hx6c.onrender.com",
     ],
