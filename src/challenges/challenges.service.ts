@@ -6,6 +6,7 @@ import { CreateChallengeDto } from './dto/createChallenge.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateChallengeCompleter, CreateChallengeInstructionDto, CreateChallengeSolutionDto } from './dto';
 import { v2 as cloudinary } from 'cloudinary';
+import slugify from "slugify";
 
 @Injectable()
 export class ChallengesService {
@@ -18,13 +19,14 @@ export class ChallengesService {
       if (file) {
         url = await new Promise<string>((resolve, reject) => {
           const extension = file.originalname.split('.').pop();
+          const cleanName = slugify(file.originalname, { lower: true, strict: true });
 
           cloudinary.uploader.upload_stream(
             {
               folder: 'challenge-documents',
               resource_type: 'raw',
               use_filename: true,
-              public_id: file.originalname, // keep full name with extension
+              public_id: cleanName, // keep full name with extension
               filename_override: file.originalname,
             },
             (error, result: any) => {
