@@ -29,8 +29,8 @@ export class ChallengesService {
             folder: "challenge-documents",
             resource_type: "raw",
             use_filename: true,
-            public_id: cleanName,
-            filename_override: cleanName,
+
+            unique_filename: true, // adds random suffix
           },
           (error, result: any) => {
             if (error) return reject(error);
