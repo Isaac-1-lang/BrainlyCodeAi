@@ -14,49 +14,53 @@ export class ChallengesService {
 
   constructor(private prisma: PrismaService) { }
   async createChallenge(dto: CreateChallengeDto, file?: Express.Multer.File) {
-    try {
-      let url: string | undefined;
-      if (file) {
-        url = await new Promise<string>((resolve, reject) => {
-          const extension = file.originalname.split('.').pop();
-          const cleanName = slugify(file.originalname, { lower: true, strict: true });
+  try {
+    let url: string | undefined;
 
-          cloudinary.uploader.upload_stream(
-            {
-              folder: 'challenge-documents',
-              resource_type: 'raw',
-              use_filename: true,
-              public_id: cleanName, // keep full name with extension
-              filename_override: file.originalname,
-            },
-            (error, result: any) => {
-              if (error) return reject(error);
-              if (!result?.secure_url) return reject(new Error('Upload failed'));
-              resolve(result.secure_url);
-            },
-          ).end(file.buffer);
+    if (file) {
+      url = await new Promise<string>((resolve, reject) => {
+        // Sanitize file name (remove spaces/special chars)
+        const cleanName = file.originalname
+          .replace(/\s+/g, "_")         // spaces -> underscores
+          .replace(/[^a-zA-Z0-9_.-]/g, ""); // keep only safe chars
 
-        });
-      }
-      const challenge = await this.prisma.challenge.create({
-        data: {
-          ...dto,
-          documentUrl: url, 
-        },
+        cloudinary.uploader.upload_stream(
+          {
+            folder: "challenge-documents",
+            resource_type: "raw",
+            use_filename: true,
+            public_id: cleanName,
+            filename_override: cleanName,
+          },
+          (error, result: any) => {
+            if (error) return reject(error);
+            if (!result?.secure_url) return reject(new Error("Upload failed"));
+            resolve(result.secure_url);
+          }
+        ).end(file.buffer);
       });
-
-      return {
-        message: 'Challenge created successfully',
-        challenge,
-      };
-    } catch (error) {
-      this.logger.error('Challenge creation failed:', error);
-      throw new HttpException(
-        (error as any).message || 'Failed to create challenge',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
     }
+
+    const challenge = await this.prisma.challenge.create({
+      data: {
+        ...dto,
+        documentUrl: url,
+      },
+    });
+
+    return {
+      message: "Challenge created successfully",
+      challenge,
+    };
+  } catch (error) {
+    this.logger.error("Challenge creation failed:", error);
+    throw new HttpException(
+      (error as any).message || "Failed to create challenge",
+      HttpStatus.INTERNAL_SERVER_ERROR
+    );
   }
+}
+
 
 
   async updateChallenge(id: string, dto: any) {
