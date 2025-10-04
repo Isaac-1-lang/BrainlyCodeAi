@@ -24,21 +24,16 @@ export class ChallengesService {
               folder: 'challenge-documents',
               resource_type: 'raw',
               use_filename: true,
-              public_id: file.originalname.split('.')[0],
+              public_id: file.originalname, // keep full name with extension
               filename_override: file.originalname,
-              format: extension,
             },
             (error, result: any) => {
               if (error) return reject(error);
               if (!result?.secure_url) return reject(new Error('Upload failed'));
-
-              // Ensure extension
-              const finalUrl = result.secure_url.includes(`.${extension}`)
-                ? result.secure_url
-                : `${result.secure_url}.${extension}`;
-              resolve(finalUrl);
+              resolve(result.secure_url);
             },
           ).end(file.buffer);
+
         });
       }
       const challenge = await this.prisma.challenge.create({
