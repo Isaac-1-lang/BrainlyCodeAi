@@ -8,27 +8,52 @@ export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async validateOAuthLogin(oauthUser: {
     email: string;
     name: string;
     photo?: string;
     provider: 'google' | 'github';
+    githubId?: string;
+    username?: string;
   }) {
-    // Check if user exists by email
+    // 1. Find or create the user in your DB
     let user = await this.userService.findByEmail(oauthUser.email);
-
-
-    // Create new OAuth user if none exists
     if (!user) {
       user = await this.userService.createOAuthUser(oauthUser);
     }
 
-    // Create JWT payload
-    const payload = { sub: user.id, email: user.email, username: user.username, role: user.role,isPremium:user.isPremium };
-    const access_token = this.jwtService.sign(payload);
+    // 2. Generate tokens
+    const access_token = await this.signToken(
+      user.id,
+      user.email,
+      user.role ?? 'USER',
+      user.isPremium,
+    );
+    const refresh_token = await this.signRefreshToken(
+      user.id,
+      user.email,
+      user.role ?? 'USER',
+      user.isPremium,
+    );
 
-    return { access_token, user };
+    // 3. Optionally, save the refresh token hash in DB for security
+
+    return { access_token, refresh_token, user };
+  }
+
+  async signToken(id: number, email: string, role: string, isPremium: boolean) {
+    return this.jwtService.signAsync(
+      { sub: id, email, role, isPremium },
+      { expiresIn: '15m' }
+    );
+  }
+
+  async signRefreshToken(id: number, email: string, role: string, isPremium: boolean) {
+    return this.jwtService.signAsync(
+      { sub: id, email, role, isPremium },
+      { expiresIn: '7d' }
+    );
   }
 }

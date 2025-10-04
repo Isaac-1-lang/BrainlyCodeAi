@@ -87,7 +87,6 @@ export class AuthService {
     return { access_token: access_token, refresh_token: refresh_token, user: { id: user.id, email: user.email, role: user.role ?? "USER", isPremium: user.isPremium } }
   }
 
-  // --- REFRESH ---
   // Accepts the refresh token string (from cookie), verifies it, and returns new tokens.
   async refresh(refreshToken: string | undefined): Promise<{ access_token: string; refresh_token: string; user: { id: number; email: string; role: string | null; isPremium: boolean } }> {
     if (!refreshToken) {
@@ -138,6 +137,23 @@ export class AuthService {
       access_token: accessToken,
       refresh_token: refreshToken,
     };
+  }
+
+  async getMe(token: object) {
+     return await this.prisma.user.findUnique({
+      where: {
+        id: token['sub'],
+      },
+      select: { 
+        id: true, 
+        email: true, 
+        username: true, 
+        role: true, 
+        isPremium: true, 
+        createdAt: true, 
+        updatedAt: true 
+      },
+    });
   }
 
   // --- LOGOUT ---

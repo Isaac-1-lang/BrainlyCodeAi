@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable prettier/prettier */
 import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
@@ -11,97 +9,83 @@ export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly configService: ConfigService,
-  ) {}
+  ) { }
 
-  // ----------------------------
   // Google OAuth
-  // ----------------------------
-
-  // Start Google OAuth login flow
   @Get('google')
   @UseGuards(AuthGuard('google'))
-  async googleAuth() {
-    // Passport handles redirect automatically
-  }
+  async googleAuth() { }
 
-  // Handle Google OAuth redirect
   @Get('google/redirect')
   @UseGuards(AuthGuard('google'))
   async googleAuthRedirect(@Req() req: Request, @Res() res: Response) {
     try {
       if (!req.user) throw new Error('No user data received from Google OAuth');
-
       const oauthUser = {
         email: (req.user as any).email,
         name: (req.user as any).name,
         photo: (req.user as any).photo,
-        provider: 'google' as const,
+        provider: 'google' as 'google',
       };
+      const { access_token, refresh_token } = await this.authService.validateOAuthLogin(oauthUser);
 
-      const { access_token } = await this.authService.validateOAuthLogin(oauthUser);
+      res.cookie('refresh_token', refresh_token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      });
 
-      const frontendUrl =
-        this.configService.get('FRONTEND_URL') || 'https://frontend-mdy5.onrender.com';
-      return res.redirect(`${frontendUrl}/user?token=${access_token}`);
+      const frontendUrl = this.configService.get('FRONTEND_URL') || 'http://localhost:5173';
+      return res.redirect(`${frontendUrl}/oauth-success?token=${access_token}`);
     } catch (err: any) {
-      console.error('Error in googleAuthRedirect:', err);
-      const frontendUrl =
-        this.configService.get('FRONTEND_URL') || 'https://frontend-mdy5.onrender.com';
+      const frontendUrl = this.configService.get('FRONTEND_URL') || 'http://localhost:5173';
       return res.redirect(
         `${frontendUrl}/auth/error?message=${encodeURIComponent(err.message)}`,
       );
     }
   }
 
-  // ----------------------------
   // GitHub OAuth
-  // ----------------------------
-
-  // Start GitHub OAuth login flow
   @Get('github')
   @UseGuards(AuthGuard('github'))
-  async githubAuth() {
-    // Passport handles redirect automatically
-  }
+  async githubAuth() { }
 
-  // Handle GitHub OAuth redirect
   @Get('github/redirect')
   @UseGuards(AuthGuard('github'))
   async githubAuthRedirect(@Req() req: Request, @Res() res: Response) {
     try {
       if (!req.user) throw new Error('No user data received from GitHub OAuth');
-
       const user = req.user as any;
       let email = user.email;
-
-      // Handle GitHub email privacy
       if (!email && user.emails && user.emails.length > 0) {
         const primaryEmail = user.emails.find((e: any) => e.primary);
         email = primaryEmail ? primaryEmail.value : user.emails[0].value;
       }
       if (!email) {
         email = `${user.username}@github.local`;
-        console.warn(`GitHub user ${user.username} has no public email, using fallback`);
       }
-
       const oauthUser = {
-        email: email,
+        email,
         name: user.name || user.displayName || user.username,
         photo: user.photo || user.avatar_url || user._json?.avatar_url,
-        provider: 'github' as const,
+        provider: 'github' as 'github',
         githubId: user.id,
         username: user.username,
       };
+      const { access_token, refresh_token } = await this.authService.validateOAuthLogin(oauthUser);
 
-      const { access_token } = await this.authService.validateOAuthLogin(oauthUser);
+      res.cookie('refresh_token', refresh_token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      });
 
-      const frontendUrl =
-        this.configService.get('FRONTEND_URL') || 'https://frontend-mdy5.onrender.com';
-      return res.redirect(`${frontendUrl}/user?token=${access_token}`);
+      const frontendUrl = this.configService.get('FRONTEND_URL');
+      return res.redirect(`${frontendUrl}/oauth-success?token=${access_token}`);
     } catch (err: any) {
-      console.error('Error in githubAuthRedirect:', err);
-      const frontendUrl =
-        this.configService.get('FRONTEND_URL') || 'https://frontend-mdy5.onrender.com';
+      const frontendUrl = this.configService.get('FRONTEND_URL');
       return res.redirect(
         `${frontendUrl}/auth/error?message=${encodeURIComponent(err.message)}`,
       );
