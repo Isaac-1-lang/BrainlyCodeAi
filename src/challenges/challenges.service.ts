@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prettier/prettier */
-
 import { BadRequestException, HttpException, HttpStatus, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { CreateChallengeDto } from './dto/createChallenge.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateChallengeCompleter, CreateChallengeInstructionDto, CreateChallengeSolutionDto } from './dto';
 import { v2 as cloudinary } from 'cloudinary';
-import slugify from "slugify";
+// import slugify from "slugify";
 
 @Injectable()
 export class ChallengesService {
@@ -46,7 +43,7 @@ export class ChallengesService {
       data: {
         ...dto,
         documentUrl: url,
-      },
+      }
     });
 
     return {
@@ -281,9 +278,19 @@ export class ChallengesService {
 
 
   async createChallengeSolution(dto: CreateChallengeSolutionDto) {
-    if (!dto.challengeId) {
-      throw new NotFoundException("Challenge not found!");
+    const challenge = await this.prisma.challenge.findUnique({
+      where: {
+        id: dto.challengeId
+      }
+    })
+    if (!challenge) {
+      throw new NotFoundException("Challenge doesn't exists!");
     }
+
+    if(!(Number(dto.challengeId))) {
+      return "Challenge id should be number";
+    }
+
     try {
       const challengeSolution = await this.prisma.challengeSolutions.create({
         data: dto
@@ -291,17 +298,20 @@ export class ChallengesService {
 
       return { "Message": "Solution creation was successfull" };
     } catch (error) {
-      this.logger.error('Request failed:', error)
+      this.logger.error('Request failed:', error);
       throw new HttpException("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
   async getChallengeSolution(challengeId: number) {
-    return await this.prisma.challengeSolutions.findMany({
+    const solution = await this.prisma.challengeSolutions.findMany({
       where: {
         challengeId: challengeId
       }
     })
+
+    console.log(solution);
+    return solution;
   }
 
   async createChallengeCompleter(dto: CreateChallengeCompleter) {

@@ -113,7 +113,6 @@ export class AuthService {
         const { access_token, refresh_token } = await this.generateTokens(user.id, user.email, user.role ?? 'USER', user.isPremium);
         return { access_token: access_token, refresh_token: refresh_token, user: { id: user.id, email: user.email, role: user.role ?? "USER", isPremium: user.isPremium } }
     } catch (err) {
-      // Could be token expired or invalid
       throw new UnauthorizedException('Invalid or expired refresh token');
     }
   }

@@ -26,7 +26,7 @@ export class CommentService {
 
     await transporter.sendMail({
       from: `"Community Page" <${process.env.EMAIL_USER}>`,
-      to: 'chrisnshuti943@gmail.com',
+      to: 'izerejoshua94@gmail.com',
       subject: 'New Comment Submitted',
       text: `User ID: ${dto.userId ?? 'Anonymous'}\n\nComment:\n${dto.message}`,
     });
