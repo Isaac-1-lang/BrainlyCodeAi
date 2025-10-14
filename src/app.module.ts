@@ -27,6 +27,7 @@ import { ChatGateway } from "./chat.gateway";
 import { ChatModule } from "./messages/message.module";
 import { CommentModule } from "./comments/comment.module";
 import { CourseResourceModule } from "./courseResource/course-resource.module";
+import { AiModule } from "./AI layer/ai.module";
 
 @Module({
   imports: [
@@ -55,7 +56,8 @@ import { CourseResourceModule } from "./courseResource/course-resource.module";
     AuthoModule,
     ChatModule,
     CommentModule,
-    CourseResourceModule
+    CourseResourceModule,
+    AiModule
   ],
   providers: [ChatGateway],
 })

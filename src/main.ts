@@ -7,6 +7,10 @@ import { resolve } from "path";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import * as cookieParser from "cookie-parser";
 import { SocketIoAdapter } from './socket.adapter'; // Adjust path if needed
+import 'dotenv/config';
+
+
+const PORT = process.env.PORT || 3000;
 
 async function bootstrap() {
   console.log('Starting NestJS application...');
@@ -54,7 +58,7 @@ async function bootstrap() {
   const server = app.getHttpServer();
   server.setTimeout(20 * 60 * 1000); // 20 mins (you had 10, but updated to match comment)
 
-  await app.listen(process.env.PORT || 3000);
+await app.listen(PORT);
   console.log(`Application is running on: ${await app.getUrl()}`);
 }
 

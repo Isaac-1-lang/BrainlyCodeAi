@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNotEmpty, IsString, IsEnum, IsOptional, IsStrongPassword } from "class-validator";
-import { Role } from "@prisma/client";
+import { IsEmail, IsNotEmpty, IsString, IsEnum, IsOptional, IsStrongPassword, IsIn } from "class-validator";
 
 export class AuthDto {
   @ApiProperty({
@@ -39,9 +38,9 @@ export class AuthDto {
     description: "User role",
     name: "TEACHER",
     required: true,
-    enum: Role
+    enum: ["ADMIN", "USER", "SUPERADMIN"]
   })
   @IsOptional()
-  @IsEnum(Role)
-  role?: Role;
+  @IsIn(["ADMIN", "USER", "SUPERADMIN"])
+  role?: "ADMIN" | "USER" | "SUPERADMIN";
 }

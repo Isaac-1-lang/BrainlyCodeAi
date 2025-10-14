@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Level } from "@prisma/client";
-import { IsNotEmpty, IsOptional, IsString } from "class-validator"
+import { IsNotEmpty, IsOptional, IsString, IsIn } from "class-validator"
 
 export class CreateCourseDto {
   
@@ -10,8 +9,8 @@ export class CreateCourseDto {
   @IsString()
   category!: string;
   
-  @IsString()
-  level!: Level;
+  @IsIn(["BEGINNER", "INTERMEDIATE", "ADVANCED"]) 
+  level!: "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
 
   @IsString()
   @IsNotEmpty()
