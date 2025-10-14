@@ -1,5 +1,5 @@
-/* eslint-disable prettier/prettier */
-import { IsNotEmpty, IsString, IsOptional } from "class-validator";
+import { IsNotEmpty, IsString, IsOptional, IsBoolean } from "class-validator";
+import { Transform } from "class-transformer";
 
 export class CreateChallengeDto {
   @IsNotEmpty()
@@ -9,7 +9,7 @@ export class CreateChallengeDto {
   @IsNotEmpty()
   @IsString()
   difficulty!: string;
-  
+
   @IsNotEmpty()
   @IsString()
   description!: string;
@@ -25,4 +25,12 @@ export class CreateChallengeDto {
   @IsOptional()
   @IsString()
   documentUrl?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  useEditor?: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  useInput?: boolean
 }

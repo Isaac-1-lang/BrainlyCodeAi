@@ -76,7 +76,7 @@ async createChallenge(
 
   @Post('solution')
   createChallengeSolution(@Body() dto: CreateChallengeSolutionDto) {
-    return this.challengeService.createChallengeSolution(dto)
+    return this.challengeService.createChallengeSolution(dto);
   }
 
   @Get('/solution/:challengeId')

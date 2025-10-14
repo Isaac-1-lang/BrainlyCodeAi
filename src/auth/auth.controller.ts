@@ -23,10 +23,11 @@ export class AuthController {
   async signup(@Res() res: Response, @Body() dto: AuthDto) {
     const { access_token, refresh_token } = await this.authService.signup(dto);
 
+    const isProd = process.env.NODE_ENV === 'production';
     res.cookie("refresh_token", refresh_token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: "none",
+      secure: isProd,
+      sameSite: (isProd ? 'none' : 'lax') as any,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -37,10 +38,11 @@ export class AuthController {
   async login(@Body() dto: LoginDto, @Res() res: Response) {
     const { access_token, refresh_token, user } = await this.authService.login(dto);
 
+    const isProd = process.env.NODE_ENV === 'production';
     res.cookie('refresh_token', refresh_token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // true on Render.com
-      sameSite: 'none',
+      secure: isProd,
+      sameSite: (isProd ? 'none' : 'lax') as any,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -51,7 +53,17 @@ export class AuthController {
   async refresh(@Req() req: Request, @Res() res: Response) {
     const refreshToken = req.cookies['refresh_token'];
     if (!refreshToken) return res.status(401).json({ message: 'Refresh token missing' });
-    const { access_token, user } = await this.authService.refresh(refreshToken);
+    const { access_token, refresh_token, user } = await this.authService.refresh(refreshToken);
+
+    const isProd = process.env.NODE_ENV === 'production';
+    // Rotate cookie as well, to persist the newly issued refresh token
+    res.cookie('refresh_token', refresh_token, {
+      httpOnly: true,
+      secure: isProd,
+      sameSite: (isProd ? 'none' : 'lax') as any,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
     res.json({ access_token, user });
   }
 

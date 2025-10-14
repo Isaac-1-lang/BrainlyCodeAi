@@ -28,8 +28,8 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      "https://brainlycode.netlify.app",
-      "https://brainly-code.onrender.com",
+      "https://brainlycode.dpdns.org",
+      "https://brainlycode.dpdns.org",
       "https://frontend-mdy5.onrender.com",
       "http://localhost:5173",
       "https://backend-hx6c.onrender.com",

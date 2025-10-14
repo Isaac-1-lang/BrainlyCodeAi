@@ -13,6 +13,7 @@ export class AdminController {
     return this.adminServices.getDashboardStats();
   }
 
+  @UseGuards(JwtGuard, AdminGuard)
   @Get('')
   getUsers() {
     return this.adminServices.getUsers();
