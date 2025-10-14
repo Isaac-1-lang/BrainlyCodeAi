@@ -20,8 +20,8 @@ export class ChallengesService {
         const cleanName = file.originalname
           .replace(/\s+/g, "_")         // spaces -> underscores
           .replace(/[^a-zA-Z0-9_.-]/g, ""); // keep only safe chars
-
-        cloudinary.uploader.upload_stream(
+        const base64File = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+        cloudinary.uploader.upload(base64File ,
           {
             folder: "challenge-documents",
             resource_type: "raw",
@@ -35,7 +35,7 @@ export class ChallengesService {
             if (!result?.secure_url) return reject(new Error("Upload failed"));
             resolve(result.secure_url);
           }
-        ).end(file.buffer);
+        );
       });
     }
 
