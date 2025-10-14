@@ -16,7 +16,7 @@ export class ChallengesService {
   async createChallenge(dto: CreateChallengeDto, file?: Express.Multer.File) {
   try {
     let url: string | undefined;
-
+    console.log(file)
     if (file) {
       url = await new Promise<string>((resolve, reject) => {
         // Sanitize file name (remove spaces/special chars)
