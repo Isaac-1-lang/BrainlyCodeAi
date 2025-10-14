@@ -219,6 +219,7 @@ model Challenge {
   difficulty   String
   useEditor    Boolean?                 @default(false)
   useInput     Boolean?   @default(false)
+  takesUrl     Boolean?   @default(false)
   instructions ChallengeInstructions[]
   documentUrl  String?
   likesList    ChallengeLike[]
@@ -290,6 +291,9 @@ model CompletedChallenges {
   id          Int       @id @default(autoincrement())
   userId      Int
   challengeId Int
+  userSolution     String?
+  url         String?
+  correct     Status    @default(JUST)
   createdAt   DateTime  @default(now())
   challenge   Challenge @relation(fields: [challengeId], references: [id])
   user        User      @relation(fields: [userId], references: [id])
@@ -306,4 +310,10 @@ enum Level {
   BEGINNER
   INTERMEDIATE
   ADVANCED
+}
+
+enum Status {
+  WRIGHT
+  WRONG
+  JUST
 }

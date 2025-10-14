@@ -1,5 +1,4 @@
-/* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { AdminGuard, JwtGuard } from 'src/guard';
 import { EditUserDto } from './dto';
@@ -47,8 +46,15 @@ export class AdminController {
   }
 
   @UseGuards(JwtGuard, AdminGuard)
+  @Patch('/challenge-completers/:challengeId')
+  correctCompleters(@Param('challengeId') challengeId: number) {
+    return this.adminServices.correctCompleters(challengeId);
+  }
+
+  @UseGuards(JwtGuard, AdminGuard)
   @Get('/graph-stats')
   getGraphStats() {
     return this.adminServices.getGraphStats();
   }
+
 }

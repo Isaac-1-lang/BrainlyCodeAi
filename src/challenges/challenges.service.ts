@@ -310,7 +310,6 @@ export class ChallengesService {
       }
     })
 
-    console.log(solution);
     return solution;
   }
 
@@ -327,10 +326,13 @@ export class ChallengesService {
     if (existing) {
       throw new BadRequestException("Challenge already completed by this user.");
     }
+
     return this.prisma.completedChallenges.create({
       data: {
         userId: dto.userId,
         challengeId: dto.challengeId,
+        userSolution: dto.solution,
+        url: dto.url,
         createdAt: new Date(),
       }
     });
