@@ -217,10 +217,11 @@ model Challenge {
   relation     String?
   likes        Int                     @default(0)
   difficulty   String
-  useEditor    Boolean?                 @default(false)
-  useInput     Boolean?   @default(false)
-  instructions ChallengeInstructions[]
+  useEditor    Boolean?                @default(false)
   documentUrl  String?
+  useInput     Boolean?                @default(false)
+  takesUrl     Boolean?                @default(false)
+  instructions ChallengeInstructions[]
   likesList    ChallengeLike[]
   solutions    ChallengeSolutions[]
   completions  CompletedChallenges[]
@@ -287,13 +288,15 @@ model ChallengeSolutions {
 }
 
 model CompletedChallenges {
-  id          Int       @id @default(autoincrement())
-  userId      Int
-  challengeId Int
-  createdAt   DateTime  @default(now())
-  challenge   Challenge @relation(fields: [challengeId], references: [id])
-  user        User      @relation(fields: [userId], references: [id])
-  Course      Course[]  @relation("CompletedChallengesToCourse")
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  challengeId  Int
+  createdAt    DateTime  @default(now())
+  url          String?
+  userSolution String?
+  challenge    Challenge @relation(fields: [challengeId], references: [id])
+  user         User      @relation(fields: [userId], references: [id])
+  Course       Course[]  @relation("CompletedChallengesToCourse")
 }
 
 enum Role {
@@ -306,4 +309,10 @@ enum Level {
   BEGINNER
   INTERMEDIATE
   ADVANCED
+}
+
+enum Status {
+  WRIGHT
+  WRONG
+  JUST
 }

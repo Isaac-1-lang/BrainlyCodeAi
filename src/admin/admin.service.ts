@@ -1,7 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { EditUserDto } from './dto';
+import { url } from 'inspector';
+import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class AdminService {
@@ -131,16 +133,54 @@ export class AdminService {
 
       const someObj = {
         user: await this.prisma.user.findUnique({
-            where: { id: challengeCompleter.userId }
+            where: { id: challengeCompleter.userId },
+            select: {
+              email: true,
+              username: true,
+              photo: true,
+              provider: true
+            }
           }),
-  
-        completionTime: challengeCompleter.createdAt
+        id: challengeCompleter.id,
+        completionTime: challengeCompleter.createdAt,
+        url: challengeCompleter.url,
+        solution: challengeCompleter.userSolution,
+        correct: challengeCompleter.correct
       }
       return someObj
     })
   );
 
   return completerUsers;
+}
+
+async correctCompleters(completerId: number) {
+  const completer = await this.prisma.completedChallenges.findFirst({
+    where: {
+      id: completerId
+    }
+  })
+
+  if(!completer) {
+    throw new NotFoundException("Completion not found")
+  }
+
+  try {
+    await this.prisma.completedChallenges.update({
+      where: {
+        id: completerId
+      },
+      data: {
+        correct: "WRIGHT"
+      }
+    })
+
+    return {
+      message: "Done correcting completer"
+    }
+  } catch (error) {
+    throw new InternalServerErrorException("Unable to correct")
+  }
 }
 
 }
