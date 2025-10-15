@@ -13,7 +13,7 @@ export class ChallengesService {
   async createChallenge(dto: CreateChallengeDto, file?: Express.Multer.File) {
   try {
     let url: string | undefined;
-    console.log("uploaded file: ", file);
+    console.log("file to be uploaded: ", file);
     if (file) {
       url = await new Promise<string>((resolve, reject) => {
         // Sanitize file name (remove spaces/special chars)
@@ -33,6 +33,7 @@ export class ChallengesService {
           (error, result: any) => {
             if (error) return reject(error);
             if (!result?.secure_url) return reject(new Error("Upload failed"));
+            console.log("Upload result: ",result);
             resolve(result.secure_url);
           }
         );
