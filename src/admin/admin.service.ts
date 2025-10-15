@@ -171,7 +171,7 @@ async correctCompleters(completerId: number) {
         id: completerId
       },
       data: {
-        correct: true
+        correct: "WRIGHT"
       }
     })
 
