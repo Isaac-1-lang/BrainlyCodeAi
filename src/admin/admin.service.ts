@@ -135,6 +135,7 @@ export class AdminService {
         user: await this.prisma.user.findUnique({
             where: { id: challengeCompleter.userId },
             select: {
+              id: true,
               email: true,
               username: true,
               photo: true,
@@ -154,10 +155,16 @@ export class AdminService {
   return completerUsers;
 }
 
-async correctCompleters(completerId: number) {
+async correctCompleters(completerId: number, dto: {userId: number}) {
   const completer = await this.prisma.completedChallenges.findFirst({
     where: {
       id: completerId
+    }
+  })
+
+  const challenge = await this.prisma.challenge.findUnique({
+    where: {
+      id: completer?.challengeId
     }
   })
 
@@ -175,12 +182,71 @@ async correctCompleters(completerId: number) {
       }
     })
 
+    await this.prisma.message.create({
+      data: {
+        content: `Your answer for the ${challenge?.title} challenge was correct`,
+        type: 'text',
+        senderId: 2,
+        receiverId: dto.userId,
+      }
+    });
+
     return {
       message: "Done correcting completer"
     }
   } catch (error) {
     throw new InternalServerErrorException("Unable to correct")
   }
+}
+
+async rejectAnswer(answerId: number, dto: {userId: number}) {
+   const answer = await this.prisma.completedChallenges.findUnique({
+    where:{
+      id: answerId
+    }
+   })
+
+   const challenge = await this.prisma.challenge.findUnique({
+    where: {
+      id: answer?.challengeId
+    }
+  })
+   
+   if(!answer) {
+    throw new NotFoundException("Answer was not provided")
+   }
+
+   try {
+    await this.prisma.completedChallenges.update({
+      where: {
+        id: answerId
+      },
+      data: {
+        correct: "WRONG"
+      }
+    })
+
+    await this.prisma.message.create({
+      data: {
+        content: `Sorry your answer for the ${challenge?.title} challenge has reached us but it needs updating ie Its not correct so far.
+        You can talk to me if you need any help`,
+        type: 'text',
+        senderId: 2,
+        receiverId: dto.userId,
+      }
+    });
+
+    return (
+      await this.prisma.completedChallenges.delete(
+      {
+        where: {
+          id: answerId
+        }
+      }
+     ))
+   } catch (error) {
+    
+   }
 }
 
 }

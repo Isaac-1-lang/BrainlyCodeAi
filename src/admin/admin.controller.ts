@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { AdminGuard, JwtGuard } from 'src/guard';
 import { EditUserDto } from './dto';
@@ -47,14 +47,36 @@ export class AdminController {
 
   @UseGuards(JwtGuard, AdminGuard)
   @Patch('/challenge-completers/:challengeId')
-  correctCompleters(@Param('challengeId') challengeId: number) {
-    return this.adminServices.correctCompleters(challengeId);
+  correctCompleters(
+    @Param('challengeId') id: number,
+    dto: {userId} 
+) {
+    const answerId = Number(id);
+    if(isNaN(answerId) || isNaN(dto.userId)){
+      throw new BadRequestException("UserId and answer id must be numbers")
+    }
+
+    return this.adminServices.correctCompleters(answerId, dto);
   }
 
   @UseGuards(JwtGuard, AdminGuard)
   @Get('/graph-stats')
   getGraphStats() {
     return this.adminServices.getGraphStats();
+  }
+
+  @UseGuards(JwtGuard, AdminGuard) 
+  @Patch('/reject/:id')
+  rejectAnswer(
+    @Param("id") id: number,
+    @Body() dto: {userId: number}
+  ) {
+    const answerId = Number(id);
+    if(isNaN(answerId) || isNaN(dto.userId)){
+      throw new BadRequestException("UserId and answer id must be numbers")
+    }
+    
+    return this.adminServices.rejectAnswer(answerId, dto);
   }
 
 }
