@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { HttpException, HttpStatus, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { EditUserDto } from './dto';
 import { url } from 'inspector';
@@ -206,6 +206,10 @@ async rejectAnswer(answerId: number, dto: {userId: number}) {
     }
    })
 
+   if(!answer) {
+    throw new BadRequestException("No such answer")
+   }
+
    const challenge = await this.prisma.challenge.findUnique({
     where: {
       id: answer?.challengeId
@@ -245,7 +249,7 @@ async rejectAnswer(answerId: number, dto: {userId: number}) {
       }
      ))
    } catch (error) {
-    
+    throw new InternalServerErrorException("Failed to sign reject answer")
    }
 }
 
