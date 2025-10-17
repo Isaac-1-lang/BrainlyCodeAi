@@ -13,15 +13,15 @@ export class ChallengesService {
   async createChallenge(dto: CreateChallengeDto, file?: Express.Multer.File) {
   try {
     let url: string | undefined;
-
+    console.log("file to be uploaded: ", file);
     if (file) {
       url = await new Promise<string>((resolve, reject) => {
         // Sanitize file name (remove spaces/special chars)
         const cleanName = file.originalname
           .replace(/\s+/g, "_")         // spaces -> underscores
           .replace(/[^a-zA-Z0-9_.-]/g, ""); // keep only safe chars
-
-        cloudinary.uploader.upload_stream(
+        const base64File = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+        cloudinary.uploader.upload(base64File ,
           {
             folder: "challenge-documents",
             resource_type: "raw",
@@ -33,9 +33,10 @@ export class ChallengesService {
           (error, result: any) => {
             if (error) return reject(error);
             if (!result?.secure_url) return reject(new Error("Upload failed"));
+            console.log("Upload result: ",result);
             resolve(result.secure_url);
           }
-        ).end(file.buffer);
+        );
       });
     }
 
