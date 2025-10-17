@@ -156,6 +156,7 @@ export class AdminService {
 }
 
 async correctCompleters(completerId: number, dto: {userId: number}) {
+  console.log(completerId);
   const completer = await this.prisma.completedChallenges.findFirst({
     where: {
       id: completerId

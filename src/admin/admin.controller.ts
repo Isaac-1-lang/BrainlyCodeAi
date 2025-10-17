@@ -46,17 +46,17 @@ export class AdminController {
   }
 
   @UseGuards(JwtGuard, AdminGuard)
-  @Patch('/challenge-completers/:challengeId')
+  @Patch('/challenge-completers')
   correctCompleters(
-    @Param('challengeId') id: number,
-    @Body() dto: {userId} 
+    @Body() dto: {userId, id}
 ) {
-    const answerId = Number(id);
-    if(isNaN(answerId) || isNaN(dto.userId)){
-      throw new BadRequestException("UserId and answer id must be numbers")
-    }
+    const completerId = Number(dto.id);
+    console.log(completerId, dto.userId);
+    // if(isNaN(answerId) || isNaN(dto.userId)){
+    //   throw new BadRequestException("UserId and answer id must be numbers")
+    // }
 
-    return this.adminServices.correctCompleters(answerId, dto);
+    return this.adminServices.correctCompleters(completerId, dto);
   }
 
   @UseGuards(JwtGuard, AdminGuard)
