@@ -52,9 +52,9 @@ export class AdminController {
 ) {
     const completerId = Number(dto.id);
     console.log(completerId, dto.userId);
-    // if(isNaN(answerId) || isNaN(dto.userId)){
-    //   throw new BadRequestException("UserId and answer id must be numbers")
-    // }
+    if(isNaN(dto.id) || isNaN(dto.userId)){
+      throw new BadRequestException("UserId and answer id must be numbers")
+    }
 
     return this.adminServices.correctCompleters(completerId, dto);
   }
