@@ -148,6 +148,8 @@ export class AdminService {
         solution: challengeCompleter.userSolution,
         correct: challengeCompleter.correct
       }
+
+      console.log(someObj)
       return someObj
     })
   );
