@@ -28,6 +28,8 @@ export class ChallengesService {
             use_filename: true,
             public_id: cleanName,
             filename_override: cleanName,
+            type: "upload",            // <-- force public file
+            access_mode: "public", 
             
           },
           (error, result: any) => {
