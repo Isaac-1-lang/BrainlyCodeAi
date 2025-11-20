@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 9EAhQa6psXpdO4xyIZRRR3vhn7BznL7Wgmx82EOBy8FISnlpgEKEkX1uDjj75RH
+\restrict 2MedFiOyhwAhlvQ2khXN8xY6eezgMGwk1obaD1vTWA6TUV5cM08RP7g6MJIWDtb
 
 -- Dumped from database version 17.6 (Debian 17.6-1.pgdg12+1)
 -- Dumped by pg_dump version 17.6
@@ -20,14 +20,23 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
+-- Name: public; Type: SCHEMA; Schema: -; Owner: brainly_code_database_user
 --
 
 -- *not* creating schema, since initdb creates it
 
 
+ALTER SCHEMA public OWNER TO brainly_code_database_user;
+
 --
--- Name: Level; Type: TYPE; Schema: public; Owner: -
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: brainly_code_database_user
+--
+
+COMMENT ON SCHEMA public IS '';
+
+
+--
+-- Name: Level; Type: TYPE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TYPE public."Level" AS ENUM (
@@ -37,8 +46,10 @@ CREATE TYPE public."Level" AS ENUM (
 );
 
 
+ALTER TYPE public."Level" OWNER TO brainly_code_database_user;
+
 --
--- Name: Role; Type: TYPE; Schema: public; Owner: -
+-- Name: Role; Type: TYPE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TYPE public."Role" AS ENUM (
@@ -48,8 +59,10 @@ CREATE TYPE public."Role" AS ENUM (
 );
 
 
+ALTER TYPE public."Role" OWNER TO brainly_code_database_user;
+
 --
--- Name: Status; Type: TYPE; Schema: public; Owner: -
+-- Name: Status; Type: TYPE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TYPE public."Status" AS ENUM (
@@ -59,12 +72,14 @@ CREATE TYPE public."Status" AS ENUM (
 );
 
 
+ALTER TYPE public."Status" OWNER TO brainly_code_database_user;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- Name: Challenge; Type: TABLE; Schema: public; Owner: -
+-- Name: Challenge; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."Challenge" (
@@ -82,8 +97,10 @@ CREATE TABLE public."Challenge" (
 );
 
 
+ALTER TABLE public."Challenge" OWNER TO brainly_code_database_user;
+
 --
--- Name: ChallengeInstructions; Type: TABLE; Schema: public; Owner: -
+-- Name: ChallengeInstructions; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."ChallengeInstructions" (
@@ -95,8 +112,10 @@ CREATE TABLE public."ChallengeInstructions" (
 );
 
 
+ALTER TABLE public."ChallengeInstructions" OWNER TO brainly_code_database_user;
+
 --
--- Name: ChallengeInstructions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: ChallengeInstructions_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."ChallengeInstructions_id_seq"
@@ -108,15 +127,17 @@ CREATE SEQUENCE public."ChallengeInstructions_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."ChallengeInstructions_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: ChallengeInstructions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: ChallengeInstructions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."ChallengeInstructions_id_seq" OWNED BY public."ChallengeInstructions".id;
 
 
 --
--- Name: ChallengeLike; Type: TABLE; Schema: public; Owner: -
+-- Name: ChallengeLike; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."ChallengeLike" (
@@ -126,8 +147,10 @@ CREATE TABLE public."ChallengeLike" (
 );
 
 
+ALTER TABLE public."ChallengeLike" OWNER TO brainly_code_database_user;
+
 --
--- Name: ChallengeLike_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: ChallengeLike_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."ChallengeLike_id_seq"
@@ -139,15 +162,17 @@ CREATE SEQUENCE public."ChallengeLike_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."ChallengeLike_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: ChallengeLike_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: ChallengeLike_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."ChallengeLike_id_seq" OWNED BY public."ChallengeLike".id;
 
 
 --
--- Name: ChallengeSolutions; Type: TABLE; Schema: public; Owner: -
+-- Name: ChallengeSolutions; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."ChallengeSolutions" (
@@ -158,8 +183,10 @@ CREATE TABLE public."ChallengeSolutions" (
 );
 
 
+ALTER TABLE public."ChallengeSolutions" OWNER TO brainly_code_database_user;
+
 --
--- Name: ChallengeSolutions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: ChallengeSolutions_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."ChallengeSolutions_id_seq"
@@ -171,15 +198,17 @@ CREATE SEQUENCE public."ChallengeSolutions_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."ChallengeSolutions_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: ChallengeSolutions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: ChallengeSolutions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."ChallengeSolutions_id_seq" OWNED BY public."ChallengeSolutions".id;
 
 
 --
--- Name: Challenge_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: Challenge_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."Challenge_id_seq"
@@ -191,15 +220,17 @@ CREATE SEQUENCE public."Challenge_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."Challenge_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: Challenge_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: Challenge_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."Challenge_id_seq" OWNED BY public."Challenge".id;
 
 
 --
--- Name: Comment; Type: TABLE; Schema: public; Owner: -
+-- Name: Comment; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."Comment" (
@@ -210,8 +241,10 @@ CREATE TABLE public."Comment" (
 );
 
 
+ALTER TABLE public."Comment" OWNER TO brainly_code_database_user;
+
 --
--- Name: Comment_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: Comment_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."Comment_id_seq"
@@ -223,15 +256,17 @@ CREATE SEQUENCE public."Comment_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."Comment_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: Comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: Comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."Comment_id_seq" OWNED BY public."Comment".id;
 
 
 --
--- Name: CompletedChallenges; Type: TABLE; Schema: public; Owner: -
+-- Name: CompletedChallenges; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."CompletedChallenges" (
@@ -245,8 +280,10 @@ CREATE TABLE public."CompletedChallenges" (
 );
 
 
+ALTER TABLE public."CompletedChallenges" OWNER TO brainly_code_database_user;
+
 --
--- Name: CompletedChallenges_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: CompletedChallenges_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."CompletedChallenges_id_seq"
@@ -258,15 +295,17 @@ CREATE SEQUENCE public."CompletedChallenges_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."CompletedChallenges_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: CompletedChallenges_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: CompletedChallenges_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."CompletedChallenges_id_seq" OWNED BY public."CompletedChallenges".id;
 
 
 --
--- Name: Course; Type: TABLE; Schema: public; Owner: -
+-- Name: Course; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."Course" (
@@ -286,8 +325,10 @@ CREATE TABLE public."Course" (
 );
 
 
+ALTER TABLE public."Course" OWNER TO brainly_code_database_user;
+
 --
--- Name: CourseLike; Type: TABLE; Schema: public; Owner: -
+-- Name: CourseLike; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."CourseLike" (
@@ -298,8 +339,10 @@ CREATE TABLE public."CourseLike" (
 );
 
 
+ALTER TABLE public."CourseLike" OWNER TO brainly_code_database_user;
+
 --
--- Name: CourseLike_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: CourseLike_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."CourseLike_id_seq"
@@ -311,15 +354,17 @@ CREATE SEQUENCE public."CourseLike_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."CourseLike_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: CourseLike_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: CourseLike_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."CourseLike_id_seq" OWNED BY public."CourseLike".id;
 
 
 --
--- Name: CourseModule; Type: TABLE; Schema: public; Owner: -
+-- Name: CourseModule; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."CourseModule" (
@@ -330,8 +375,10 @@ CREATE TABLE public."CourseModule" (
 );
 
 
+ALTER TABLE public."CourseModule" OWNER TO brainly_code_database_user;
+
 --
--- Name: CourseModule_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: CourseModule_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."CourseModule_id_seq"
@@ -343,15 +390,17 @@ CREATE SEQUENCE public."CourseModule_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."CourseModule_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: CourseModule_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: CourseModule_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."CourseModule_id_seq" OWNED BY public."CourseModule".id;
 
 
 --
--- Name: CourseRating; Type: TABLE; Schema: public; Owner: -
+-- Name: CourseRating; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."CourseRating" (
@@ -364,8 +413,10 @@ CREATE TABLE public."CourseRating" (
 );
 
 
+ALTER TABLE public."CourseRating" OWNER TO brainly_code_database_user;
+
 --
--- Name: CourseRating_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: CourseRating_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."CourseRating_id_seq"
@@ -377,15 +428,17 @@ CREATE SEQUENCE public."CourseRating_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."CourseRating_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: CourseRating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: CourseRating_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."CourseRating_id_seq" OWNED BY public."CourseRating".id;
 
 
 --
--- Name: CourseResource; Type: TABLE; Schema: public; Owner: -
+-- Name: CourseResource; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."CourseResource" (
@@ -400,8 +453,10 @@ CREATE TABLE public."CourseResource" (
 );
 
 
+ALTER TABLE public."CourseResource" OWNER TO brainly_code_database_user;
+
 --
--- Name: CourseResource_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: CourseResource_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."CourseResource_id_seq"
@@ -413,15 +468,17 @@ CREATE SEQUENCE public."CourseResource_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."CourseResource_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: CourseResource_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: CourseResource_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."CourseResource_id_seq" OWNED BY public."CourseResource".id;
 
 
 --
--- Name: Course_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: Course_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."Course_id_seq"
@@ -433,15 +490,17 @@ CREATE SEQUENCE public."Course_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."Course_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: Course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: Course_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."Course_id_seq" OWNED BY public."Course".id;
 
 
 --
--- Name: Lesson; Type: TABLE; Schema: public; Owner: -
+-- Name: Lesson; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."Lesson" (
@@ -457,8 +516,10 @@ CREATE TABLE public."Lesson" (
 );
 
 
+ALTER TABLE public."Lesson" OWNER TO brainly_code_database_user;
+
 --
--- Name: LessonSolution; Type: TABLE; Schema: public; Owner: -
+-- Name: LessonSolution; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."LessonSolution" (
@@ -468,8 +529,10 @@ CREATE TABLE public."LessonSolution" (
 );
 
 
+ALTER TABLE public."LessonSolution" OWNER TO brainly_code_database_user;
+
 --
--- Name: LessonSolution_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: LessonSolution_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."LessonSolution_id_seq"
@@ -481,15 +544,17 @@ CREATE SEQUENCE public."LessonSolution_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."LessonSolution_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: LessonSolution_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: LessonSolution_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."LessonSolution_id_seq" OWNED BY public."LessonSolution".id;
 
 
 --
--- Name: LessonVideo; Type: TABLE; Schema: public; Owner: -
+-- Name: LessonVideo; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."LessonVideo" (
@@ -501,8 +566,10 @@ CREATE TABLE public."LessonVideo" (
 );
 
 
+ALTER TABLE public."LessonVideo" OWNER TO brainly_code_database_user;
+
 --
--- Name: LessonVideo_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: LessonVideo_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."LessonVideo_id_seq"
@@ -514,15 +581,17 @@ CREATE SEQUENCE public."LessonVideo_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."LessonVideo_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: LessonVideo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: LessonVideo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."LessonVideo_id_seq" OWNED BY public."LessonVideo".id;
 
 
 --
--- Name: Lesson_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: Lesson_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."Lesson_id_seq"
@@ -534,15 +603,17 @@ CREATE SEQUENCE public."Lesson_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."Lesson_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: Lesson_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: Lesson_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."Lesson_id_seq" OWNED BY public."Lesson".id;
 
 
 --
--- Name: Message; Type: TABLE; Schema: public; Owner: -
+-- Name: Message; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."Message" (
@@ -556,8 +627,10 @@ CREATE TABLE public."Message" (
 );
 
 
+ALTER TABLE public."Message" OWNER TO brainly_code_database_user;
+
 --
--- Name: Message_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: Message_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."Message_id_seq"
@@ -569,15 +642,17 @@ CREATE SEQUENCE public."Message_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."Message_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: Message_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: Message_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."Message_id_seq" OWNED BY public."Message".id;
 
 
 --
--- Name: MiniModule; Type: TABLE; Schema: public; Owner: -
+-- Name: MiniModule; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."MiniModule" (
@@ -588,8 +663,10 @@ CREATE TABLE public."MiniModule" (
 );
 
 
+ALTER TABLE public."MiniModule" OWNER TO brainly_code_database_user;
+
 --
--- Name: MiniModuleProgress; Type: TABLE; Schema: public; Owner: -
+-- Name: MiniModuleProgress; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."MiniModuleProgress" (
@@ -603,8 +680,10 @@ CREATE TABLE public."MiniModuleProgress" (
 );
 
 
+ALTER TABLE public."MiniModuleProgress" OWNER TO brainly_code_database_user;
+
 --
--- Name: MiniModuleProgress_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: MiniModuleProgress_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."MiniModuleProgress_id_seq"
@@ -616,15 +695,17 @@ CREATE SEQUENCE public."MiniModuleProgress_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."MiniModuleProgress_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: MiniModuleProgress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: MiniModuleProgress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."MiniModuleProgress_id_seq" OWNED BY public."MiniModuleProgress".id;
 
 
 --
--- Name: MiniModule_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: MiniModule_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."MiniModule_id_seq"
@@ -636,15 +717,17 @@ CREATE SEQUENCE public."MiniModule_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."MiniModule_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: MiniModule_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: MiniModule_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."MiniModule_id_seq" OWNED BY public."MiniModule".id;
 
 
 --
--- Name: UserCourseProgress; Type: TABLE; Schema: public; Owner: -
+-- Name: UserCourseProgress; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."UserCourseProgress" (
@@ -659,8 +742,10 @@ CREATE TABLE public."UserCourseProgress" (
 );
 
 
+ALTER TABLE public."UserCourseProgress" OWNER TO brainly_code_database_user;
+
 --
--- Name: UserCourseProgress_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: UserCourseProgress_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."UserCourseProgress_id_seq"
@@ -672,15 +757,17 @@ CREATE SEQUENCE public."UserCourseProgress_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."UserCourseProgress_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: UserCourseProgress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: UserCourseProgress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."UserCourseProgress_id_seq" OWNED BY public."UserCourseProgress".id;
 
 
 --
--- Name: UserLessonProgress; Type: TABLE; Schema: public; Owner: -
+-- Name: UserLessonProgress; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."UserLessonProgress" (
@@ -694,8 +781,10 @@ CREATE TABLE public."UserLessonProgress" (
 );
 
 
+ALTER TABLE public."UserLessonProgress" OWNER TO brainly_code_database_user;
+
 --
--- Name: UserLessonProgress_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: UserLessonProgress_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."UserLessonProgress_id_seq"
@@ -707,15 +796,17 @@ CREATE SEQUENCE public."UserLessonProgress_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."UserLessonProgress_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: UserLessonProgress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: UserLessonProgress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."UserLessonProgress_id_seq" OWNED BY public."UserLessonProgress".id;
 
 
 --
--- Name: UserProfileImage; Type: TABLE; Schema: public; Owner: -
+-- Name: UserProfileImage; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."UserProfileImage" (
@@ -725,8 +816,10 @@ CREATE TABLE public."UserProfileImage" (
 );
 
 
+ALTER TABLE public."UserProfileImage" OWNER TO brainly_code_database_user;
+
 --
--- Name: UserProfileImage_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: UserProfileImage_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."UserProfileImage_id_seq"
@@ -738,15 +831,17 @@ CREATE SEQUENCE public."UserProfileImage_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."UserProfileImage_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: UserProfileImage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: UserProfileImage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."UserProfileImage_id_seq" OWNED BY public."UserProfileImage".id;
 
 
 --
--- Name: Video; Type: TABLE; Schema: public; Owner: -
+-- Name: Video; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."Video" (
@@ -758,8 +853,10 @@ CREATE TABLE public."Video" (
 );
 
 
+ALTER TABLE public."Video" OWNER TO brainly_code_database_user;
+
 --
--- Name: Video_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: Video_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."Video_id_seq"
@@ -771,15 +868,17 @@ CREATE SEQUENCE public."Video_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."Video_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: Video_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: Video_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."Video_id_seq" OWNED BY public."Video".id;
 
 
 --
--- Name: _CompletedChallengesToCourse; Type: TABLE; Schema: public; Owner: -
+-- Name: _CompletedChallengesToCourse; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."_CompletedChallengesToCourse" (
@@ -788,8 +887,10 @@ CREATE TABLE public."_CompletedChallengesToCourse" (
 );
 
 
+ALTER TABLE public."_CompletedChallengesToCourse" OWNER TO brainly_code_database_user;
+
 --
--- Name: _prisma_migrations; Type: TABLE; Schema: public; Owner: -
+-- Name: _prisma_migrations; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public._prisma_migrations (
@@ -804,8 +905,10 @@ CREATE TABLE public._prisma_migrations (
 );
 
 
+ALTER TABLE public._prisma_migrations OWNER TO brainly_code_database_user;
+
 --
--- Name: userModuleProgress; Type: TABLE; Schema: public; Owner: -
+-- Name: userModuleProgress; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public."userModuleProgress" (
@@ -820,8 +923,10 @@ CREATE TABLE public."userModuleProgress" (
 );
 
 
+ALTER TABLE public."userModuleProgress" OWNER TO brainly_code_database_user;
+
 --
--- Name: userModuleProgress_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: userModuleProgress_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public."userModuleProgress_id_seq"
@@ -833,15 +938,17 @@ CREATE SEQUENCE public."userModuleProgress_id_seq"
     CACHE 1;
 
 
+ALTER SEQUENCE public."userModuleProgress_id_seq" OWNER TO brainly_code_database_user;
+
 --
--- Name: userModuleProgress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: userModuleProgress_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public."userModuleProgress_id_seq" OWNED BY public."userModuleProgress".id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -
+-- Name: users; Type: TABLE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE TABLE public.users (
@@ -859,8 +966,10 @@ CREATE TABLE public.users (
 );
 
 
+ALTER TABLE public.users OWNER TO brainly_code_database_user;
+
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE SEQUENCE public.users_id_seq
@@ -872,176 +981,178 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
+ALTER SEQUENCE public.users_id_seq OWNER TO brainly_code_database_user;
+
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: Challenge id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: Challenge id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Challenge" ALTER COLUMN id SET DEFAULT nextval('public."Challenge_id_seq"'::regclass);
 
 
 --
--- Name: ChallengeInstructions id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: ChallengeInstructions id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."ChallengeInstructions" ALTER COLUMN id SET DEFAULT nextval('public."ChallengeInstructions_id_seq"'::regclass);
 
 
 --
--- Name: ChallengeLike id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: ChallengeLike id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."ChallengeLike" ALTER COLUMN id SET DEFAULT nextval('public."ChallengeLike_id_seq"'::regclass);
 
 
 --
--- Name: ChallengeSolutions id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: ChallengeSolutions id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."ChallengeSolutions" ALTER COLUMN id SET DEFAULT nextval('public."ChallengeSolutions_id_seq"'::regclass);
 
 
 --
--- Name: Comment id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: Comment id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Comment" ALTER COLUMN id SET DEFAULT nextval('public."Comment_id_seq"'::regclass);
 
 
 --
--- Name: CompletedChallenges id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: CompletedChallenges id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CompletedChallenges" ALTER COLUMN id SET DEFAULT nextval('public."CompletedChallenges_id_seq"'::regclass);
 
 
 --
--- Name: Course id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: Course id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Course" ALTER COLUMN id SET DEFAULT nextval('public."Course_id_seq"'::regclass);
 
 
 --
--- Name: CourseLike id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: CourseLike id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseLike" ALTER COLUMN id SET DEFAULT nextval('public."CourseLike_id_seq"'::regclass);
 
 
 --
--- Name: CourseModule id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: CourseModule id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseModule" ALTER COLUMN id SET DEFAULT nextval('public."CourseModule_id_seq"'::regclass);
 
 
 --
--- Name: CourseRating id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: CourseRating id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseRating" ALTER COLUMN id SET DEFAULT nextval('public."CourseRating_id_seq"'::regclass);
 
 
 --
--- Name: CourseResource id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: CourseResource id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseResource" ALTER COLUMN id SET DEFAULT nextval('public."CourseResource_id_seq"'::regclass);
 
 
 --
--- Name: Lesson id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: Lesson id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Lesson" ALTER COLUMN id SET DEFAULT nextval('public."Lesson_id_seq"'::regclass);
 
 
 --
--- Name: LessonSolution id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: LessonSolution id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."LessonSolution" ALTER COLUMN id SET DEFAULT nextval('public."LessonSolution_id_seq"'::regclass);
 
 
 --
--- Name: LessonVideo id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: LessonVideo id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."LessonVideo" ALTER COLUMN id SET DEFAULT nextval('public."LessonVideo_id_seq"'::regclass);
 
 
 --
--- Name: Message id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: Message id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Message" ALTER COLUMN id SET DEFAULT nextval('public."Message_id_seq"'::regclass);
 
 
 --
--- Name: MiniModule id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: MiniModule id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."MiniModule" ALTER COLUMN id SET DEFAULT nextval('public."MiniModule_id_seq"'::regclass);
 
 
 --
--- Name: MiniModuleProgress id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: MiniModuleProgress id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."MiniModuleProgress" ALTER COLUMN id SET DEFAULT nextval('public."MiniModuleProgress_id_seq"'::regclass);
 
 
 --
--- Name: UserCourseProgress id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: UserCourseProgress id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserCourseProgress" ALTER COLUMN id SET DEFAULT nextval('public."UserCourseProgress_id_seq"'::regclass);
 
 
 --
--- Name: UserLessonProgress id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: UserLessonProgress id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserLessonProgress" ALTER COLUMN id SET DEFAULT nextval('public."UserLessonProgress_id_seq"'::regclass);
 
 
 --
--- Name: UserProfileImage id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: UserProfileImage id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserProfileImage" ALTER COLUMN id SET DEFAULT nextval('public."UserProfileImage_id_seq"'::regclass);
 
 
 --
--- Name: Video id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: Video id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Video" ALTER COLUMN id SET DEFAULT nextval('public."Video_id_seq"'::regclass);
 
 
 --
--- Name: userModuleProgress id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: userModuleProgress id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."userModuleProgress" ALTER COLUMN id SET DEFAULT nextval('public."userModuleProgress_id_seq"'::regclass);
 
 
 --
--- Name: users id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Data for Name: Challenge; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: Challenge; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."Challenge" (id, title, description, duration, relation, likes, difficulty, "useEditor", "documentUrl", "useInput", "takesUrl") FROM stdin;
@@ -1051,7 +1162,7 @@ COPY public."Challenge" (id, title, description, duration, relation, likes, diff
 
 
 --
--- Data for Name: ChallengeInstructions; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: ChallengeInstructions; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."ChallengeInstructions" (id, number, instruction, "challengeId", completed) FROM stdin;
@@ -1070,16 +1181,15 @@ COPY public."ChallengeInstructions" (id, number, instruction, "challengeId", com
 
 
 --
--- Data for Name: ChallengeLike; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: ChallengeLike; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."ChallengeLike" (id, "userId", "challengeId") FROM stdin;
-2	1	91
 \.
 
 
 --
--- Data for Name: ChallengeSolutions; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: ChallengeSolutions; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."ChallengeSolutions" (id, number, solution, "challengeId") FROM stdin;
@@ -1092,7 +1202,7 @@ COPY public."ChallengeSolutions" (id, number, solution, "challengeId") FROM stdi
 
 
 --
--- Data for Name: Comment; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: Comment; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."Comment" (id, message, "userId", "createdAt") FROM stdin;
@@ -1114,67 +1224,37 @@ COPY public."Comment" (id, message, "userId", "createdAt") FROM stdin;
 16	kljhjhj;jhjhjhjhjj;jl	83	2025-10-15 04:57:03.802
 17	is not this the correct responce https://github.com/bol250/bolice/commit/50aec18f0e7a8007161f5ab60942b2f45c6c8ae9	47	2025-10-18 11:12:29.061
 18	I think this is helping	90	2025-10-18 16:58:51.28
+19	nicee one	1	2025-10-24 14:27:32.768
 \.
 
 
 --
--- Data for Name: CompletedChallenges; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: CompletedChallenges; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."CompletedChallenges" (id, "userId", "challengeId", "createdAt", url, "userSolution", correct) FROM stdin;
-74	35	91	2025-10-17 18:33:38.017	https://github.com/Bruxe-Dev/THE-PRIME-PROGRAM.git	\N	WRIGHT
-76	117	91	2025-10-18 08:31:22.943	https://github.com/Wateta/prime-numbers.c/blob/main/Prime.c	\N	WRIGHT
-77	198	91	2025-10-18 08:59:00.709	https://github.com/mutimutuje483/hope/blob/main/prime%20numbers.c	\N	WRIGHT
-78	72	91	2025-10-18 10:34:47.087	https://github.com/Teta140/divineteta.git	\N	WRIGHT
-79	49	91	2025-10-18 11:08:08.948	https://github.com/ladyNightshade-d/-Nightshade/blob/main/yyy.txt	\N	WRIGHT
-67	1	91	2025-10-17 14:58:17.008	github.com/I-Josh-pro-grammin	\N	WRIGHT
-60	168	91	2025-10-17 13:37:07.09	https://github.com/Aubierge-codes/print-primes-1-to-100.git\n	\N	WRIGHT
-63	55	91	2025-10-17 13:58:55.83	https://github.com/ste-lla-mina/Prime-numbers.git	\N	WRIGHT
-64	65	91	2025-10-17 14:42:54.278	https://github.com/Albert-ei-u/Brainiacs/commit/02d0907dfd587afcad22d27e82d4cdfecaf58716	\N	WRIGHT
-65	29	91	2025-10-17 14:49:57.006	https://github.com/rockyishimwe/my-github/blob/main/brainacs%20wor.html   \nhttps://github.com/rockyishimwe/my-github/blob/main/START.sql	\N	WRIGHT
-66	29	91	2025-10-17 14:49:57.049	https://github.com/rockyishimwe/my-github/blob/main/brainacs%20wor.html   \nhttps://github.com/rockyishimwe/my-github/blob/main/START.sql	\N	WRIGHT
-69	27	91	2025-10-17 17:07:16.128	https://github.com/sergewiseabijuru-create/serge-work/commit/42fd61803e0328c8a57811f70b2bdaf6650b4af5	\N	WRIGHT
-70	54	91	2025-10-17 17:10:14.868	https://github.com/hirwaivan/Braniacs-work-/blob/main/Work.txt	\N	WRIGHT
-68	89	91	2025-10-17 15:45:56.339	https://github.com/irakozeolga490-hue/IRAKOZE-Olga.git	\N	WRIGHT
-71	34	91	2025-10-17 18:01:24.721	By clicking to the view raw, the assignment will be seen.\nhttps://github.com/Linaa0/prime_number_algorithm/blob/main/Assignment%20Of%20the%20Algorithm.docx	\N	WRIGHT
-81	41	91	2025-10-18 11:44:42.689	https://github.com/Irsamiii/Brainiacs.git	\N	WRIGHT
-80	47	91	2025-10-18 11:10:29.85	https://github.com/bol250/bolice/commit/50aec18f0e7a8007161f5ab60942b2f45c6c8ae9	\N	WRIGHT
-82	74	91	2025-10-18 11:54:00.539	https://github.com/Zzawadii/numbers\n	\N	WRIGHT
-83	32	91	2025-10-18 12:01:46.721	https://github.com/mgalen007/prime-finder	\N	WRIGHT
-84	114	91	2025-10-18 12:06:27.459	https://github.com/anneline-codes/Prime-/blob/main/prime.py	\N	WRIGHT
-85	101	91	2025-10-18 12:42:43.53	https://github.com/IPeace7/MY-WEB-PAGE/blob/main/index.html.txt	\N	WRIGHT
-93	69	91	2025-10-18 18:44:00.797	https://github.com/HJeandedieu/Work	\N	WRIGHT
-88	158	91	2025-10-18 14:33:34.186	https://github.com/micomyizabonte/bonte/blob/main/pseudocode.c	\N	WRIGHT
-96	169	91	2025-10-19 09:46:51.396	https://github.com/umuhirebelinda-dot/prime-numbers	\N	WRIGHT
-95	44	91	2025-10-19 09:13:03.909	https://github.com/janebatakariza-hue/Brainiacs-work.git	\N	WRIGHT
-89	177	91	2025-10-18 16:29:09.639	https://github.com/krif014/krif-s-work/commit/e89d613b51fa5da302b87956552ba8a9edf9840a	\N	WRIGHT
-90	88	91	2025-10-18 16:42:23.521	https://github.com/my-gloria/Glo-Brainly-code/blob/main/BainlyPrime.c	\N	WRIGHT
-91	58	91	2025-10-18 17:17:05.777	https://github.com/bel319/prime-numbers.c	\N	WRIGHT
-92	209	91	2025-10-18 18:40:47.56	https://github.com/ericbizimana111-bit/first-project/blob/main/eric%20work	\N	WRIGHT
-97	33	91	2025-10-20 10:59:54.347	https://github.com/SanoAngella/Program-Prime	\N	WRIGHT
+100	83	91	2025-10-22 11:26:39.488	printf("Hello World");	\N	WRIGHT
 \.
 
 
 --
--- Data for Name: Course; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: Course; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."Course" (id, title, category, level, duration, "studentsCount", rating, "createdAt", "updatedAt", description, likes, completions, "creatorId") FROM stdin;
-3	Algorithms	Normal	BEGINNER		0	0	2025-10-06 09:50:54.211	2025-10-17 12:54:20.87	Algorithms and their representations\n	1	0	2
 \.
 
 
 --
--- Data for Name: CourseLike; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: CourseLike; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."CourseLike" (id, "userId", "courseId", "createdAt") FROM stdin;
-1	89	3	2025-10-17 12:54:20.8
 \.
 
 
 --
--- Data for Name: CourseModule; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: CourseModule; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."CourseModule" (id, "courseId", title, number) FROM stdin;
@@ -1182,7 +1262,7 @@ COPY public."CourseModule" (id, "courseId", title, number) FROM stdin;
 
 
 --
--- Data for Name: CourseRating; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: CourseRating; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."CourseRating" (id, "userId", "courseId", rating, comment, "createdAt") FROM stdin;
@@ -1190,17 +1270,15 @@ COPY public."CourseRating" (id, "userId", "courseId", rating, comment, "createdA
 
 
 --
--- Data for Name: CourseResource; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: CourseResource; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."CourseResource" (id, "courseId", title, number, url, type, "createdAt", "updatedAt") FROM stdin;
-3	3	Algorithms and Presentation Methods	1	https://res.cloudinary.com/dnppwzg0k/image/upload/v1759691848/algorithm_n5zild.pdf	file	2025-10-06 09:51:36.485	2025-10-07 08:37:27.657
-5	3	Programming concepts	2	https://res.cloudinary.com/dnppwzg0k/image/upload/v1760431332/FoP_Theory_Final_gukqk9.pdf	file	2025-10-16 10:55:41.813	2025-10-16 10:59:14.875
 \.
 
 
 --
--- Data for Name: Lesson; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: Lesson; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."Lesson" (id, title, more, example, note, assignment, number, "miniModuleId", explanation) FROM stdin;
@@ -1208,7 +1286,7 @@ COPY public."Lesson" (id, title, more, example, note, assignment, number, "miniM
 
 
 --
--- Data for Name: LessonSolution; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: LessonSolution; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."LessonSolution" (id, solution, "lessonId") FROM stdin;
@@ -1216,7 +1294,7 @@ COPY public."LessonSolution" (id, solution, "lessonId") FROM stdin;
 
 
 --
--- Data for Name: LessonVideo; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: LessonVideo; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."LessonVideo" (id, title, number, url, "miniModuleId") FROM stdin;
@@ -1224,122 +1302,28 @@ COPY public."LessonVideo" (id, title, number, url, "miniModuleId") FROM stdin;
 
 
 --
--- Data for Name: Message; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: Message; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."Message" (id, "senderId", "receiverId", content, type, "createdAt", read) FROM stdin;
-1	22	1	working well?	text	2025-10-04 17:36:05.169	t
-2	22	1	cyz iyi chat irimo bugs bro	text	2025-10-04 17:36:34.836	t
-4	1	2	Hi	text	2025-10-05 20:03:35.828	t
-7	15	10	Hy	text	2025-10-06 18:43:29.634	f
-5	15	2	Hy	text	2025-10-06 18:43:15.973	t
-3	1	22	zirimo mwana	text	2025-10-05 19:51:11.635	t
-8	2	15	slm	text	2025-10-06 18:57:07.548	t
-9	2	1	ko utakivuga shn	text	2025-10-09 18:19:29.451	t
-10	1	2	ndavuga ahubwo woe warabuze tu	text	2025-10-09 18:20:10.472	t
-11	2	1	swa	text	2025-10-09 18:23:16.762	t
-6	15	8	Hy	text	2025-10-06 18:43:22.923	t
-12	8	15	hey	text	2025-10-10 09:01:59.198	t
-13	1	2	ey	text	2025-10-15 18:27:13.46	t
-14	2	1	oke is gotcha	text	2025-10-15 18:43:17.086	t
-15	1	2	uhmmm	text	2025-10-15 18:44:09.135	t
-16	1	2	uhmmm	text	2025-10-15 18:44:31.994	t
-17	1	2	what else	text	2025-10-15 18:44:49.044	t
-18	2	1	nothin else	text	2025-10-15 18:45:49.409	t
-19	1	2	reba ibyo aribyo nakwandikiye nanone	text	2025-10-15 19:01:13.02	t
-20	2	1	oke	text	2025-10-15 19:02:08.857	t
-21	2	1	check again	text	2025-10-15 19:09:24.948	t
-22	1	2	oke lets see again	text	2025-10-15 19:24:53.781	t
-23	2	1	Sorry your answer has reached us but it need updating ie Its not correct so far	text	2025-10-17 09:00:31.807	t
-24	1	22	zari zashiramo se	text	2025-10-17 09:24:54.348	f
-25	1	22	ey	text	2025-10-17 09:29:29.914	f
-26	1	22	ey	text	2025-10-17 09:29:48.265	f
-27	2	1	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-17 13:25:07.62	t
-28	2	1	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-17 13:36:05.456	t
-29	2	1	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-17 13:40:46.609	t
-30	2	1	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-17 14:40:56.648	t
-33	2	158	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-17 17:12:58.952	f
-35	2	65	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-17 17:13:51.725	f
-38	2	27	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-17 17:37:28.756	f
-39	2	54	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-17 17:38:19.666	f
-31	2	1	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-17 17:11:59.043	t
-40	2	89	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 07:26:13.427	t
-41	2	89	ark nyine haracyari utuntu tubura tu	text	2025-10-18 07:30:27.578	t
-42	2	89	like weho urimo uratanga imibare yose	text	2025-10-18 07:30:39.188	t
-43	2	89	knd we wanted iyiri divisible by itself and 1 only	text	2025-10-18 07:31:02.802	t
-48	2	28	Yooo	text	2025-10-18 08:10:37.59	f
-49	2	28	Ko watanze pseudocode se kd nashakaga codes	text	2025-10-18 08:10:50.804	f
-50	2	28	ubwo kora github acct na repo ubundi upushingeho code ubone kumpa link	text	2025-10-18 08:11:08.93	f
-45	2	82	Yoo	text	2025-10-18 08:07:47.649	t
-46	2	82	Nnc mwn ko watanze pseudocode kdi nashakaga repositories zo kuri github	text	2025-10-18 08:08:09.913	t
-47	2	82	ubwo shaka uko ubikurikirana flex tuh	text	2025-10-18 08:08:25.152	t
-36	2	29	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-17 17:34:41.328	t
-37	2	29	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-17 17:34:46.488	t
-57	47	44	hi	text	2025-10-18 11:13:41.892	f
-58	47	44	https://github.com/bol250/bolice/commit/50aec18f0e7a8007161f5ab60942b2f45c6c8ae9	text	2025-10-18 11:13:50.319	f
-59	47	44	is this the correct responce	text	2025-10-18 11:14:04.681	f
-54	89	2	Thanks mn reka ngire ibyo mpinduramo	text	2025-10-18 08:27:30.266	t
-55	89	2	noneho nabihinduye undebere	text	2025-10-18 09:33:34.941	t
-56	89	2	Wongere urebe nabihinduye	text	2025-10-18 09:40:26.776	t
-60	2	89	ok	text	2025-10-18 11:17:26.808	f
-61	2	82	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-18 11:18:46.605	f
-62	2	28	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-18 11:19:53.301	f
-63	2	28	impa repo	text	2025-10-18 11:20:21.321	f
-64	2	35	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 11:21:59.831	f
-66	2	117	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 11:24:20.764	f
-67	2	117	gukoresha ai ugasigamo comments biragutamaza ntuzongere ark ikingenzi nuko ubyumva	text	2025-10-18 11:26:25.7	f
-68	2	198	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 11:28:17.206	f
-32	2	168	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-17 17:12:44.551	t
-44	2	34	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 07:43:56.013	t
-51	2	69	Yooo	text	2025-10-18 08:11:30.333	t
-52	2	69	Bite se	text	2025-10-18 08:11:32.913	t
-69	2	72	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 11:29:03.459	f
-70	2	72	Ndabona bisa neza rwoe	text	2025-10-18 11:29:18.109	f
-71	2	72	rwose sorry	text	2025-10-18 11:29:28.933	f
-72	2	72	kuko ndabona uri nogufata inputs from the user niba ubyumva rwose ni swa	text	2025-10-18 11:30:06.242	f
-73	2	49	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 11:30:21.687	f
-74	2	49	Very nice algorithm rwose komerezaho	text	2025-10-18 11:31:47.159	f
-75	2	41	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 11:49:42.858	f
-76	2	47	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 11:49:52.026	f
-78	2	32	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 12:06:30.07	f
-79	2	114	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 12:28:40.409	f
-81	2	57	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-18 14:11:31.481	f
-82	2	71	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-18 14:11:55.591	f
-83	2	158	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 14:55:29.816	f
-84	2	158	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 14:55:32.928	f
-34	2	55	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-17 17:13:37.93	t
-53	2	69	Mn rero wasubmittinze pseudocodes kd nashakaga github repo zanyu mwapushinzeho codes	text	2025-10-18 08:11:57.39	t
-65	2	69	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-18 11:22:29.589	t
-80	2	101	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 12:51:22.175	t
-85	2	101	but your repository is private so you should first make it public for us to check it out	text	2025-10-18 15:30:10.067	t
-77	2	74	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-18 11:56:28.973	t
-87	90	2	https://github.com/floraihozoraissa-sketch/furious1.git	text	2025-10-18 16:57:21.888	t
-86	55	2	Thanks for the feedback!	text	2025-10-18 15:35:54.753	t
-88	69	2	okay let me work on that	text	2025-10-18 18:06:33.471	t
-89	69	2	I think it is now right	text	2025-10-18 18:45:37.252	t
-90	2	69	ni biriya rwose	text	2025-10-19 13:41:41.546	f
-91	2	69	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-19 13:41:48.69	f
-95	2	169	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-19 13:48:03.626	f
-96	2	44	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-19 13:50:01.608	f
-97	2	177	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-19 13:56:57.451	f
-98	2	88	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-19 13:57:45.02	f
-99	2	58	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-19 13:59:34.599	f
-100	2	209	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-19 14:00:31.434	f
-101	2	90	nice solution rwose	text	2025-10-19 14:02:48.848	f
-102	2	90	ark ikibazo nuko wampereye link aha	text	2025-10-19 14:03:18.682	f
-103	2	90	wari buyishyire muri challenge nabahaye ark ntrb nibiriya	text	2025-10-19 14:03:49.204	f
-92	2	111	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-19 13:43:09.803	t
-93	2	111	hi	text	2025-10-19 13:43:22.87	t
-94	2	111	the link I requested was the one for your github repository but you provided mine instead	text	2025-10-19 13:44:03.935	t
-104	111	2	Didn't I give you this\nhttps://github.com/ijenny77/-prime-numbers-	text	2025-10-20 11:14:45.918	t
-105	2	111	oke thats better	text	2025-10-20 11:23:36.3	f
-106	2	111	that one is correct rwose	text	2025-10-20 11:25:20.585	f
-107	2	33	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-20 11:40:03.93	f
+108	2	1	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-21 11:46:03.347	t
+109	1	2	ey	text	2025-10-21 19:00:58	t
+110	1	2	oke thanks for your message	text	2025-10-21 19:04:34.179	t
+111	2	1	yo welcome	text	2025-10-21 19:12:03.447	t
+112	2	1	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-22 05:56:55.477	t
+113	1	2	oke	text	2025-10-22 08:34:51.135	t
+114	2	83	Your answer for the All prime numbers from 1 to 100 challenge was correct	text	2025-10-23 14:51:12.488	f
+117	2	83	nayibonye	text	2025-10-23 14:52:01.535	f
+118	2	83	Sorry your answer for the All prime numbers from 1 to 100 challenge has reached us but it needs updating ie Its not correct so far.\n        You can talk to me if you need any help	text	2025-10-23 14:52:20.118	f
+119	1	110	hy	text	2025-10-24 14:27:13.863	f
+120	1	110	gold bimez bite	text	2025-10-24 14:28:25.13	f
+115	2	15	nayibonye mn	text	2025-10-23 14:51:29.352	t
+116	2	15	sorry it wasn't this one	text	2025-10-23 14:51:39.921	t
 \.
 
 
 --
--- Data for Name: MiniModule; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: MiniModule; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."MiniModule" (id, "courseModuleId", title, number) FROM stdin;
@@ -1347,7 +1331,7 @@ COPY public."MiniModule" (id, "courseModuleId", title, number) FROM stdin;
 
 
 --
--- Data for Name: MiniModuleProgress; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: MiniModuleProgress; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."MiniModuleProgress" (id, "userId", "miniModuleId", "currentStep", completed, "startedAt", "updatedAt") FROM stdin;
@@ -1355,7 +1339,7 @@ COPY public."MiniModuleProgress" (id, "userId", "miniModuleId", "currentStep", c
 
 
 --
--- Data for Name: UserCourseProgress; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: UserCourseProgress; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."UserCourseProgress" (id, "userId", "courseId", "currentStep", completed, "startedAt", "updatedAt", rating) FROM stdin;
@@ -1363,7 +1347,7 @@ COPY public."UserCourseProgress" (id, "userId", "courseId", "currentStep", compl
 
 
 --
--- Data for Name: UserLessonProgress; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: UserLessonProgress; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."UserLessonProgress" (id, "userId", "lessonId", "currentStep", completed, "startedAt", "updatedAt") FROM stdin;
@@ -1371,29 +1355,18 @@ COPY public."UserLessonProgress" (id, "userId", "lessonId", "currentStep", compl
 
 
 --
--- Data for Name: UserProfileImage; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: UserProfileImage; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."UserProfileImage" (id, path, "userId") FROM stdin;
-2	https://res.cloudinary.com/dglbxzxsc/image/upload/v1759490266/profile-images/zkud4hpo4xrc7i6xqbg9.jpg	8
-3	https://res.cloudinary.com/dglbxzxsc/image/upload/v1759497826/profile-images/bwkcqygrx8kbnxbrr0nc.jpg	13
-4	https://res.cloudinary.com/dglbxzxsc/image/upload/v1759593668/profile-images/bpquao74dnupq8la8uim.jpg	26
-5	https://res.cloudinary.com/dglbxzxsc/image/upload/v1759594345/profile-images/hmovifi3ciltu9ic6moz.jpg	45
-7	https://res.cloudinary.com/dglbxzxsc/image/upload/v1759595395/profile-images/pqsyhkvj3ljr7bonb1t6.png	65
-8	https://res.cloudinary.com/dglbxzxsc/image/upload/v1759597997/profile-images/ndt1nzpbp8wpo8jsosqr.jpg	71
-9	https://res.cloudinary.com/dglbxzxsc/image/upload/v1759690347/profile-images/uk3xn7y9zf0rrxrh0i7x.png	15
-12	https://res.cloudinary.com/dglbxzxsc/image/upload/v1759693156/profile-images/qkj8mpwbphpwgkmevf18.png	22
-13	https://res.cloudinary.com/dglbxzxsc/image/upload/v1759693950/profile-images/gazofqdksc9ds4zuwsv7.jpg	1
-1	https://res.cloudinary.com/dglbxzxsc/image/upload/v1759940032/profile-images/e2biawtotviexphjzalo.jpg	2
-15	https://res.cloudinary.com/dglbxzxsc/image/upload/v1760029189/profile-images/zwpu45estaqkg6vaaczh.png	105
-17	https://res.cloudinary.com/dglbxzxsc/image/upload/v1760036396/profile-images/htv5hdy9lggw8wy8fief.jpg	110
-18	https://res.cloudinary.com/dglbxzxsc/image/upload/v1760103014/profile-images/fcpaye5zwct9ylqlwk6h.png	118
-19	https://res.cloudinary.com/dglbxzxsc/image/upload/v1760108648/profile-images/th7crfvyvkcsqty3rrmm.jpg	69
+21	https://res.cloudinary.com/dglbxzxsc/image/upload/v1761047818/profile-images/pcx667illeyjjqmuuk0r.jpg	1
+22	https://res.cloudinary.com/dglbxzxsc/image/upload/v1761072771/profile-images/qlebcqxnml1ahybdcdl9.jpg	2
+23	https://res.cloudinary.com/dglbxzxsc/image/upload/v1761112647/profile-images/zawmklbyy8rh68u7u5vf.jpg	110
 \.
 
 
 --
--- Data for Name: Video; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: Video; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."Video" (id, "courseId", title, number, url) FROM stdin;
@@ -1401,7 +1374,7 @@ COPY public."Video" (id, "courseId", title, number, url) FROM stdin;
 
 
 --
--- Data for Name: _CompletedChallengesToCourse; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: _CompletedChallengesToCourse; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."_CompletedChallengesToCourse" ("A", "B") FROM stdin;
@@ -1409,10 +1382,13 @@ COPY public."_CompletedChallengesToCourse" ("A", "B") FROM stdin;
 
 
 --
--- Data for Name: _prisma_migrations; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: _prisma_migrations; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public._prisma_migrations (id, checksum, finished_at, migration_name, logs, rolled_back_at, started_at, applied_steps_count) FROM stdin;
+e318f1a9-9785-4db0-92df-9179ec4c37af	1bde850f20410fc14704969df4fc13ec122023385354dacb0ec538e958088782	2025-10-21 11:23:26.154566+00	20251015_init	\N	\N	2025-10-21 11:23:23.727344+00	1
+beac58a6-ff17-4139-9c02-9a4456f1a2bc	a4f8b8c003bef410b54e1c37df0f15063b10882adc1b37556d18982293a344a5	2025-10-21 11:23:29.415594+00	20251021095814_	\N	\N	2025-10-21 11:23:26.922921+00	1
+f91b6073-2e9e-4e45-ae6c-2ae8d35bca46	5bc6a14a81d3e3eaa6efa412d443f79e1baafb37615639410e490bcbcb7a9e8e	2025-10-21 11:26:38.983421+00	20251021112633_some	\N	\N	2025-10-21 11:26:35.947695+00	1
 13799030-5932-4298-bcac-87581356fd16	2ab0b7c293483f1abb313b59255c14b7d3c3d578328085400f736949769ceeb6	2025-10-02 19:28:01.857006+00	20250710101116_add_video_model	\N	\N	2025-10-02 19:27:59.770921+00	1
 ba9d00b3-3339-4c09-a8cc-847df4d5b2e7	469868f77541fc96abbe6606c1a65cba77144881bc9cb05d9f7c2b9b63549229	2025-10-02 19:27:25.018677+00	20250610120954_courses	\N	\N	2025-10-02 19:27:23.080719+00	1
 dabf9cd3-d5b1-495a-8771-cf539a40a878	8733999370dcc736797908d14e6fc8adb33e66632c03679d84ae555fba5640ac	2025-10-02 19:27:29.410438+00	20250624112725_	\N	\N	2025-10-02 19:27:26.645692+00	1
@@ -1482,7 +1458,7 @@ aede9e2f-7806-4f97-8a55-2f4dfa97333e	1bde850f20410fc14704969df4fc13ec12202338535
 
 
 --
--- Data for Name: userModuleProgress; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: userModuleProgress; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public."userModuleProgress" (id, "userId", "courseModuleId", "currentStep", completed, "startedAt", "updatedAt", "courseId") FROM stdin;
@@ -1490,7 +1466,7 @@ COPY public."userModuleProgress" (id, "userId", "courseModuleId", "currentStep",
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: brainly_code_database_user
 --
 
 COPY public.users (id, "createdAt", "updatedAt", email, hash, username, role, "isPremium", "courseId", photo, provider) FROM stdin;
@@ -1524,15 +1500,14 @@ COPY public.users (id, "createdAt", "updatedAt", email, hash, username, role, "i
 42	2025-10-04 16:06:15.345	2025-10-04 16:06:15.345	foreverhyacinthe@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$nb3spB82uexSr7A5mVDaFg$vUJCwkxve+Hb3XMDbWqcVPTIdpLIMexAYeVMhjmk6l8	Forever	USER	f	\N	\N	local
 43	2025-10-04 16:06:25.555	2025-10-04 16:06:25.555	cyubahiroemmy12@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$f1hKLkRaFrUtc9OKZHUV9w$NKmpGS01zmC1U8c6YiRElG5VB1Pu8Ec0r5pGmhrwvbk	wiztae_25	USER	f	\N	\N	local
 44	2025-10-04 16:06:31.743	2025-10-04 16:06:31.743	janebatakariza@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$KuloJJgRXzFHe03lLtAaTw$NrXF94K0LTrN9U2GAc479Mxnqh1QwDL5GIfyMIPqNQU	batakariza40	USER	f	\N	\N	local
-1	2025-10-02 17:50:08.262	2025-10-05 19:52:33.189	izere@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$U56zeWP00mBTtf/jDvSsXA$QtC19jJEFYITXxGQVO81Wa5jiyL3qWqgQZ8j9ej4OQU	IZERE	USER	f	\N	\N	local
 45	2025-10-04 16:06:48.553	2025-10-04 16:12:27.292	ishyarugemachille4@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$5dWtaxxdTv19vOdnJWmeVw$hNQhsrR4ZNNzqwN9rnjSsU1D8Jb2Kdkt1CYEOj94OXY	ishyarugemachille4@gmail.com	USER	f	\N	\N	local
 38	2025-10-04 16:04:48.948	2025-10-10 08:34:07.897	nezaniel2@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$e54LjN2i/BQi/U5yUmZ79g$GSwQ1bVajVEBEVP22nXnNpqjuJGU+idbEckzzUwIWvI	 nezan	USER	f	\N	\N	local
-2	2025-10-03 06:07:06.502	2025-10-08 16:13:56.547	joshua@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$45/mRPbVECx1TftHOj0cqQ$eUSxN6RevHMpk+nW5eVt43XeVMXhFYrnTOFwiTfAVqA	Joshua	SUPERADMIN	f	\N	\N	local
 24	2025-10-04 11:14:28.228	2025-10-10 07:19:52.303	ntarekayitare@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$iybF3giDTHssWkp79s+spA$hWwuhvxB7ZTDYYzI6A+/f6XX24Xl4lNqcoH5+xuhAuc	ntk	ADMIN	f	\N	\N	local
 46	2025-10-04 16:07:23.345	2025-10-04 16:07:23.345	niyishoborapacifique@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$tuEc+G3v002ScHgLcK3s9Q$XxPMddIOapepMTDTVLTr5P5EfQDI+GqZk5CeryMUWo0	Figo 1	USER	f	\N	\N	local
 48	2025-10-04 16:08:19.947	2025-10-04 16:08:19.947	melaniendikubwimana@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$TPQryf8K40jJ9jKjNe+ASg$zPohMSG6t0T5fwzlgzQDViagxm3Ow37wnetByuR1W2g	Melanie	USER	f	\N	\N	local
 40	2025-10-04 16:05:27.944	2025-10-04 16:09:24.048	imenatetaaimeepamela@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$mae4UJ8Y+ER7PdO9Zv/ebQ$nB4jiSA0PRrc4UXkShP95+gDtDR1KFY3BoydadSTqcE	Pam_zzy	USER	f	\N	\N	local
 50	2025-10-04 16:11:38.141	2025-10-04 16:11:38.141	mariussangwa@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$PQWCUOYTJVfeZkiZxOu74g$thqh80p8r793qj0ObIE/25/AI4MriLVn7d8x+0LcXVk	Marius10	USER	f	\N	\N	local
+2	2025-10-03 06:07:06.502	2025-10-21 18:52:53.525	joshua@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$45/mRPbVECx1TftHOj0cqQ$eUSxN6RevHMpk+nW5eVt43XeVMXhFYrnTOFwiTfAVqA	Joshua	SUPERADMIN	f	\N	\N	local
 51	2025-10-04 16:12:50.142	2025-10-04 16:12:50.142	joyihirwecelia@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$A7nQ0ePoEd9sDKlv5BPswQ$dW6v+RKQDTA1Ez6soHDM7VMCJJToJQOQKqt54zIBgIE	Celia Joy	USER	f	\N	\N	local
 52	2025-10-04 16:13:41.448	2025-10-04 16:13:41.448	irakozeghislain73@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$qSOEp/WgPLx4adx6dKNo7Q$0tKmkvJgb2g+10Yy6mNA+nx8TSLlu7fx1ETjMI+pwQg	irakozeghislain73	USER	f	\N	\N	local
 53	2025-10-04 16:13:48.947	2025-10-04 16:13:48.947	blaisekwizera31@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$SHI1/6yl19qfIu05umWHoA$VDeuz/fEY9sT4v5n2MIHCElubscE1unvx8/xWgW2F/s	blaise	USER	f	\N	\N	local
@@ -1545,7 +1520,6 @@ COPY public.users (id, "createdAt", "updatedAt", email, hash, username, role, "i
 62	2025-10-04 16:25:22.453	2025-10-04 16:25:22.453	giftamelie@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$wTHw6kiqyRZvPESgIKlFMQ$UR6z9dJIxkb9e1MfGlzM8KXRHLxj/Lo3Wtj7fAObRwY	AMELIE GIFT	USER	f	\N	\N	local
 63	2025-10-04 16:25:45.043	2025-10-04 16:25:45.043	alainbarsime@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$u1iJpcoXOdyEjJD6r7AoOQ$4LW/gvP7+Da2NmStURrrUx5cQ0NQF3JTIlZOSwfIIDQ	brainlycode	USER	f	\N	\N	local
 66	2025-10-04 16:28:47.242	2025-10-04 16:28:47.242	patrickuwimanikuda@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$UcnuDCG4f65anmSncvBpsg$qzaYdry30ohCBmAfCToxQAHdaiswYdAL3j/aT11OnD4	Uwimanikunda Patrick	USER	f	\N	\N	local
-67	2025-10-04 16:29:15.342	2025-10-04 16:29:15.342	isabellecadeau78@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$7mbjwrcBHHjdEcVn/TaSDg$wk8PxnL1pqApWvs4mDPooewCxnvMh4Tq+aKlRlQY7/o	isabelle cadeau	USER	f	\N	\N	local
 77	2025-10-04 17:27:46.303	2025-10-04 17:27:46.303	donjesuskayiranga@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$TN780h3Tn0XmEA4dxjqF1g$8xsFJJO6gVDJ/X4K/5oCoAXdCF4fYoQJfJRX8uytx0E	kayiranga	USER	f	\N	\N	local
 65	2025-10-04 16:28:10.05	2025-10-04 16:30:30.509	uwumuremyialbert5@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$z5yP4awODVbKgPsG4recVg$0TxiOSEfrq38njo6sCokRlSraVVq723ZQmb5R7GEO6E	Albert	USER	f	\N	\N	local
 70	2025-10-04 16:45:09.447	2025-10-04 16:45:09.447	shimirwasonia5@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$Alnkn3jglgb63GRqITKQDg$IWFW9eUfLl+WyaBextE5SfhNBaRRlrofvdmHuFlb4mo	sonia-teta	USER	f	\N	\N	local
@@ -1559,7 +1533,6 @@ COPY public.users (id, "createdAt", "updatedAt", email, hash, username, role, "i
 80	2025-10-04 17:36:25.106	2025-10-04 17:36:25.106	isanewton250@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$6D4/H2+TylQDm14N+87GEw$kdM6JiJO4ogC1V8b9x/OwazPCv7RBGB0dGog7JZfLIg	Isaac	USER	f	\N	\N	local
 81	2025-10-05 05:21:07.358	2025-10-05 05:21:07.358	aarontwarimitswe@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$62O58VsYwNQU3wv8pYQwNg$ITC/5YcHkKLDLVfGBgSGYvfMUz/LEi4n0RT7E5nmF6g	Aaron	ADMIN	f	\N	\N	local
 82	2025-10-05 16:56:31.777	2025-10-05 16:56:31.777	robertniyompuhwe@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$LWM/hU49rsOIZTRefiv89Q$hs0Gb4mtapFxf7Xqwc5nfU2AbZggz+CsSRp+plOaNS4	Robert	USER	f	\N	\N	local
-83	2025-10-05 18:37:08.804	2025-10-05 18:37:08.804	niyobyoseisaacp@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$W6qylyTMn84Drvn2shcjAA$lNexk1PXNSPVLnigjzDKyFhHbeefBXDohT5hMKIQoLo	Isaac	USER	f	\N	\N	local
 64	2025-10-04 16:26:34.443	2025-10-09 19:14:52.672	uhenriette88@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$4T6pqNyQJGVzMhnfJj91dA$iIP/jDw0JowTPLEdJVUzaMK/SdujzKZSGNfFn6yDJ+M	Henriette	USER	f	\N	\N	local
 49	2025-10-04 16:10:04.948	2025-10-18 10:18:47.51	uwasemugishaesther550@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$hKlNRbAjIhJijdDzVUqtqA$MUcIovkDf3BSddsyrqU4CoWtYTRofvpUiy45pMDg5TI	Lizaa001	USER	f	\N	\N	local
 172	2025-10-11 14:51:07.421	2025-10-11 14:51:07.421	eusebemuneza@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$B4p0N57cxzIC821mLXpqoA$Z1bMndu7rKn1kCh7hkCPOvLy3OJ8MRUUUXANYgXCCM4	its_jules.	USER	f	\N	\N	local
@@ -1572,11 +1545,11 @@ COPY public.users (id, "createdAt", "updatedAt", email, hash, username, role, "i
 90	2025-10-06 18:49:45.73	2025-10-06 18:49:45.73	floraihozoraissa@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$DYmvnPMch8stG9zOiAVzoQ$GHz6YhcOEd9YArhnUYyLaIK2RtV2U/2nCdesXWGDodY	FLOR1	USER	f	\N	\N	local
 91	2025-10-06 18:51:23.738	2025-10-06 18:51:23.738	heavensnganji@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$trDaNx8pBZLyHvJenTSEXg$WxI+KklPgcKBBZjZH7QoOUeKsroGcrQ/q4O0tnG1hlY	NganjiX	USER	f	\N	\N	local
 92	2025-10-06 18:54:27.131	2025-10-06 18:54:27.131	alphamnzr@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$VTedl8g2Eu3EWFWwDum7cQ$rCZ5+sFhc4u88UDs6JjYkfUTNyoeehGxeXH+3q3N1sE	Alpha	USER	f	\N	\N	local
+67	2025-10-04 16:29:15.342	2025-10-26 19:54:12.208	isabellecadeau78@gmail.com	$argon2i$v=19$m=16,t=2,p=1$MTIzNDU2Nzg5$GxNJCW6Vqnu9Ga99mXa+ww	isabelle cadeau	USER	f	\N	\N	local
 170	2025-10-11 14:40:23.02	2025-10-11 14:41:49.822	Qihesandrai1@gamil.com	$argon2id$v=19$m=65536,t=3,p=4$qv7JjFKMs4FVpv8HL3KgYw$YkGh6gr/+X4cS2WKx8wOArFRgF8ppz7rLZZ+6XpuWoM	Sandra Qi	USER	f	\N	\N	local
 176	2025-10-11 15:37:10.029	2025-10-11 15:37:10.029	gasaroiranzimelissa@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$kf4YJm+yWJYnRNpCzWueYQ$gtsZWoOnu/wMFC0wtZrSklI890pkypDIG+Pj4qw9HxA	Melissa	USER	f	\N	\N	local
 27	2025-10-04 15:59:25.147	2025-10-11 15:39:55.92	serge.wiseabijuru5@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$D/LnF9Mm6L5ppMWOaDYPoA$W9CHFh73634/oT42LWwGERDmXBkNjs0Nt94BpcZHyME	wise	USER	f	\N	\N	local
 84	2025-10-05 19:36:41.504	2025-10-11 15:45:44.924	amandagihozoishimwe@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$b3r7F3BbjBBDj8Ex6JKXmA$iL9S8uuKKgp6nrzVfMwRtglP9dpDyCfil+czjQj9UjI	AMANDA	USER	f	\N	\N	local
-178	2025-10-11 15:46:36.23	2025-10-11 15:46:36.23	angellahirwa7@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$ikRjM8jP/eQVuTw6trzd9g$MUC1nGeTi9oGeFZj+PJpshpU81K7Y7KXk3O+jpbv+v8	la-arquera	USER	f	\N	\N	local
 101	2025-10-06 18:58:36.23	2025-10-06 18:58:36.23	peaceinga777@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$p5n3emigPTnvC302D7fY/Q$ab/CP5c2vmMZaeZo6A6wSBkRz/ldCaE4uknnqxruoOI	IPepe	USER	f	\N	\N	local
 103	2025-10-09 16:46:10.926	2025-10-09 16:46:10.926	gchaste23@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$zAsbP6m5nL5Y9m7IBiCQiQ$JSSKSLQcIH2BjAdsZtq/PwesSQ71wX7xLYGdBHGQfpo	Chaste Ganza	USER	f	\N	\N	local
 104	2025-10-09 16:48:05.026	2025-10-09 16:48:05.026	hervendzye@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$OZBXzpQL7cWf+quf/qrz1g$kup23jeFQCfqtCi+XuYhzGiyLQWMigAWcb2Agfk6oIE	hervendzye	USER	f	\N	\N	local
@@ -1588,7 +1561,6 @@ COPY public.users (id, "createdAt", "updatedAt", email, hash, username, role, "i
 109	2025-10-09 18:18:05.627	2025-10-09 18:18:05.627	admin@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$LEm0653G4OEImHbzhB5QFA$Z1/38rybhDG44/XjdBLD4KEe2GeRbauBExxB8bnUWag	hello world	USER	f	\N	\N	local
 111	2025-10-09 18:56:10.723	2025-10-09 18:56:10.723	ishimwejennymiriotta@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$pYP2lGQuD8PoglFAEJ6xdQ$RQX6eO8Ll9qhWE7i3Y56ZyCiROV0C/pMl8cFWSo63S0	Jenny	USER	f	\N	\N	local
 47	2025-10-04 16:07:36.555	2025-10-17 15:33:49.905	komezusengebolice@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$dedlrw+//z2G7sBOCvJ3LA$AjJHQBKQLvPyhm7nwuAQaUmuijsOR/Z3JJbp6o27xxw	Bolice	USER	f	\N	\N	local
-110	2025-10-09 18:38:18.628	2025-10-09 18:59:58.35	isharagold6@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$docDoSLdGm0uPg59wCgSNw$q0VT08nJMHB0d2oOsI0+ieKKrXNB3NyLbMTCM17pEf8	Gold	ADMIN	f	\N	\N	local
 117	2025-10-10 10:59:35.932	2025-10-10 10:59:35.932	shimirwatetas@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$XvWN0iDhPzlFWhdV466Aaw$w82Je/aczUQFG+MNVsBoe4JkELcWJi9u/ZsYm22/6j8	Ssonia	USER	f	\N	\N	local
 118	2025-10-10 13:19:08.834	2025-10-10 13:30:16.229	kalizaesther5@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$Tz5kgdRIs54kE/6MHqb8Lw$CfxYNXaPYC3ObCTzBbG6eoMrV8kaySV5N002h7aEKp8	Kaliza	USER	f	\N	\N	local
 174	2025-10-11 15:26:02.725	2025-10-11 15:26:02.725	mugishawitness15@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$kUhMJEauw6eC1W7OJJnB+Q$hbQqHnwU8n98xaW8dJwUeG/MVU2IbCDkOp5+GwZji70	what	USER	f	\N	\N	local
@@ -1603,172 +1575,179 @@ COPY public.users (id, "createdAt", "updatedAt", email, hash, username, role, "i
 198	2025-10-18 08:56:40.001	2025-10-18 08:56:40.001	kezakevine@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$ieRdKTdtbeI/pg7rWDCrOw$gCJw/8mKmLk4JRQ7M/3fpDzEPe8VGrUF8Y9Doy+6N5E	keza kevine	USER	f	\N	\N	local
 168	2025-10-11 14:20:49.521	2025-10-18 17:08:59.538	aubierge7557@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$78NsfECqmcJ8U0fOxEqiXA$avYwiqY1TcwoMoSOYHLnvZOwjeovPtB4ANMM79IQ0q0	Erge	USER	f	\N	\N	local
 209	2025-10-18 18:31:51.61	2025-10-18 18:31:51.61	ericbizimana111@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$ujjlR7hAm29rsnkZ4s5wHg$sdgDxFR8HNmAJ1lbFbwul7y13donWkjrRWJD9/c0nfs	ERIC	USER	f	\N	\N	local
+1	2025-10-02 17:50:08.262	2025-10-21 11:56:59.847	izere@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$U56zeWP00mBTtf/jDvSsXA$QtC19jJEFYITXxGQVO81Wa5jiyL3qWqgQZ8j9ej4OQU	IZERE	USER	f	\N	\N	local
+110	2025-10-09 18:38:18.628	2025-10-22 05:57:31.228	isharagold6@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$docDoSLdGm0uPg59wCgSNw$q0VT08nJMHB0d2oOsI0+ieKKrXNB3NyLbMTCM17pEf8	Gold	ADMIN	f	\N	\N	local
+178	2025-10-11 15:46:36.23	2025-10-22 08:34:34.659	angellahirwa7@gmail.com	$argon2i$v=19$m=16,t=2,p=1$MTIzNDU2Nzg$jPCb6N8IoOfZCGiGpVwW+A	la-arquera	USER	f	\N	\N	local
+83	2025-10-05 18:37:08.804	2025-10-22 11:28:24.507	niyobyoseisaacp@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$W6qylyTMn84Drvn2shcjAA$lNexk1PXNSPVLnigjzDKyFhHbeefBXDohT5hMKIQoLo	Isaac	USER	f	\N	\N	local
+218	2025-10-23 14:48:04.25	2025-10-23 14:48:04.25	john.doe@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$lwfNSXe0Ckc5gROTzhJW5A$dJgh4R8vDJP1nhh7NKBYEy74Xz/IhtVayUxrqWUH6KY	SuperAdmin	USER	f	\N	\N	local
+219	2025-10-25 12:56:57.332	2025-10-25 12:56:57.332	patrickuwimanikunda@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$zwqUJCEIt2o4nBDW8Mj3KQ$asgTohncHrC3CkoytY//z41Li9Rh3Q+83EMWpcXOsDY	Uwimanikunda Patrick	USER	f	\N	\N	local
+221	2025-10-27 08:06:11.1	2025-10-27 08:06:11.1	habichristi@gmail.com	$argon2id$v=19$m=65536,t=3,p=4$iUi3HOStAjLW5LVHkSLs8Q$3Dg6QNbn1JJe34f42Py2QmPF+yilYsdha++PMNZ7df8	Kvs	USER	f	\N	\N	local
 \.
 
 
 --
--- Name: ChallengeInstructions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: ChallengeInstructions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."ChallengeInstructions_id_seq"', 14, true);
 
 
 --
--- Name: ChallengeLike_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: ChallengeLike_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."ChallengeLike_id_seq"', 4, true);
 
 
 --
--- Name: ChallengeSolutions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: ChallengeSolutions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."ChallengeSolutions_id_seq"', 10, true);
 
 
 --
--- Name: Challenge_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: Challenge_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."Challenge_id_seq"', 127, true);
 
 
 --
--- Name: Comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: Comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
-SELECT pg_catalog.setval('public."Comment_id_seq"', 18, true);
-
-
---
--- Name: CompletedChallenges_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
---
-
-SELECT pg_catalog.setval('public."CompletedChallenges_id_seq"', 97, true);
+SELECT pg_catalog.setval('public."Comment_id_seq"', 19, true);
 
 
 --
--- Name: CourseLike_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: CompletedChallenges_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
+--
+
+SELECT pg_catalog.setval('public."CompletedChallenges_id_seq"', 101, true);
+
+
+--
+-- Name: CourseLike_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."CourseLike_id_seq"', 1, true);
 
 
 --
--- Name: CourseModule_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: CourseModule_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."CourseModule_id_seq"', 1, false);
 
 
 --
--- Name: CourseRating_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: CourseRating_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."CourseRating_id_seq"', 1, false);
 
 
 --
--- Name: CourseResource_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: CourseResource_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."CourseResource_id_seq"', 5, true);
 
 
 --
--- Name: Course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: Course_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."Course_id_seq"', 3, true);
 
 
 --
--- Name: LessonSolution_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: LessonSolution_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."LessonSolution_id_seq"', 1, false);
 
 
 --
--- Name: LessonVideo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: LessonVideo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."LessonVideo_id_seq"', 1, false);
 
 
 --
--- Name: Lesson_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: Lesson_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."Lesson_id_seq"', 1, false);
 
 
 --
--- Name: Message_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: Message_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
-SELECT pg_catalog.setval('public."Message_id_seq"', 107, true);
+SELECT pg_catalog.setval('public."Message_id_seq"', 120, true);
 
 
 --
--- Name: MiniModuleProgress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: MiniModuleProgress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."MiniModuleProgress_id_seq"', 1, false);
 
 
 --
--- Name: MiniModule_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: MiniModule_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."MiniModule_id_seq"', 1, false);
 
 
 --
--- Name: UserCourseProgress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: UserCourseProgress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."UserCourseProgress_id_seq"', 1, false);
 
 
 --
--- Name: UserLessonProgress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: UserLessonProgress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."UserLessonProgress_id_seq"', 1, false);
 
 
 --
--- Name: UserProfileImage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: UserProfileImage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
-SELECT pg_catalog.setval('public."UserProfileImage_id_seq"', 20, true);
+SELECT pg_catalog.setval('public."UserProfileImage_id_seq"', 23, true);
 
 
 --
--- Name: Video_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: Video_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."Video_id_seq"', 1, true);
 
 
 --
--- Name: userModuleProgress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: userModuleProgress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
 SELECT pg_catalog.setval('public."userModuleProgress_id_seq"', 1, false);
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: brainly_code_database_user
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 217, true);
+SELECT pg_catalog.setval('public.users_id_seq', 221, true);
 
 
 --
--- Name: ChallengeInstructions ChallengeInstructions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: ChallengeInstructions ChallengeInstructions_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."ChallengeInstructions"
@@ -1776,7 +1755,7 @@ ALTER TABLE ONLY public."ChallengeInstructions"
 
 
 --
--- Name: ChallengeLike ChallengeLike_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: ChallengeLike ChallengeLike_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."ChallengeLike"
@@ -1784,7 +1763,7 @@ ALTER TABLE ONLY public."ChallengeLike"
 
 
 --
--- Name: ChallengeSolutions ChallengeSolutions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: ChallengeSolutions ChallengeSolutions_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."ChallengeSolutions"
@@ -1792,7 +1771,7 @@ ALTER TABLE ONLY public."ChallengeSolutions"
 
 
 --
--- Name: Challenge Challenge_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: Challenge Challenge_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Challenge"
@@ -1800,7 +1779,7 @@ ALTER TABLE ONLY public."Challenge"
 
 
 --
--- Name: Comment Comment_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: Comment Comment_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Comment"
@@ -1808,7 +1787,7 @@ ALTER TABLE ONLY public."Comment"
 
 
 --
--- Name: CompletedChallenges CompletedChallenges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: CompletedChallenges CompletedChallenges_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CompletedChallenges"
@@ -1816,7 +1795,7 @@ ALTER TABLE ONLY public."CompletedChallenges"
 
 
 --
--- Name: CourseLike CourseLike_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: CourseLike CourseLike_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseLike"
@@ -1824,7 +1803,7 @@ ALTER TABLE ONLY public."CourseLike"
 
 
 --
--- Name: CourseModule CourseModule_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: CourseModule CourseModule_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseModule"
@@ -1832,7 +1811,7 @@ ALTER TABLE ONLY public."CourseModule"
 
 
 --
--- Name: CourseRating CourseRating_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: CourseRating CourseRating_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseRating"
@@ -1840,7 +1819,7 @@ ALTER TABLE ONLY public."CourseRating"
 
 
 --
--- Name: CourseResource CourseResource_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: CourseResource CourseResource_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseResource"
@@ -1848,7 +1827,7 @@ ALTER TABLE ONLY public."CourseResource"
 
 
 --
--- Name: Course Course_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: Course Course_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Course"
@@ -1856,7 +1835,7 @@ ALTER TABLE ONLY public."Course"
 
 
 --
--- Name: LessonSolution LessonSolution_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: LessonSolution LessonSolution_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."LessonSolution"
@@ -1864,7 +1843,7 @@ ALTER TABLE ONLY public."LessonSolution"
 
 
 --
--- Name: LessonVideo LessonVideo_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: LessonVideo LessonVideo_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."LessonVideo"
@@ -1872,7 +1851,7 @@ ALTER TABLE ONLY public."LessonVideo"
 
 
 --
--- Name: Lesson Lesson_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: Lesson Lesson_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Lesson"
@@ -1880,7 +1859,7 @@ ALTER TABLE ONLY public."Lesson"
 
 
 --
--- Name: Message Message_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: Message Message_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Message"
@@ -1888,7 +1867,7 @@ ALTER TABLE ONLY public."Message"
 
 
 --
--- Name: MiniModuleProgress MiniModuleProgress_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: MiniModuleProgress MiniModuleProgress_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."MiniModuleProgress"
@@ -1896,7 +1875,7 @@ ALTER TABLE ONLY public."MiniModuleProgress"
 
 
 --
--- Name: MiniModule MiniModule_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: MiniModule MiniModule_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."MiniModule"
@@ -1904,7 +1883,7 @@ ALTER TABLE ONLY public."MiniModule"
 
 
 --
--- Name: UserCourseProgress UserCourseProgress_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: UserCourseProgress UserCourseProgress_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserCourseProgress"
@@ -1912,7 +1891,7 @@ ALTER TABLE ONLY public."UserCourseProgress"
 
 
 --
--- Name: UserLessonProgress UserLessonProgress_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: UserLessonProgress UserLessonProgress_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserLessonProgress"
@@ -1920,7 +1899,7 @@ ALTER TABLE ONLY public."UserLessonProgress"
 
 
 --
--- Name: UserProfileImage UserProfileImage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: UserProfileImage UserProfileImage_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserProfileImage"
@@ -1928,7 +1907,7 @@ ALTER TABLE ONLY public."UserProfileImage"
 
 
 --
--- Name: Video Video_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: Video Video_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Video"
@@ -1936,7 +1915,7 @@ ALTER TABLE ONLY public."Video"
 
 
 --
--- Name: _CompletedChallengesToCourse _CompletedChallengesToCourse_AB_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: _CompletedChallengesToCourse _CompletedChallengesToCourse_AB_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."_CompletedChallengesToCourse"
@@ -1944,7 +1923,7 @@ ALTER TABLE ONLY public."_CompletedChallengesToCourse"
 
 
 --
--- Name: _prisma_migrations _prisma_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: _prisma_migrations _prisma_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public._prisma_migrations
@@ -1952,7 +1931,7 @@ ALTER TABLE ONLY public._prisma_migrations
 
 
 --
--- Name: userModuleProgress userModuleProgress_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: userModuleProgress userModuleProgress_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."userModuleProgress"
@@ -1960,7 +1939,7 @@ ALTER TABLE ONLY public."userModuleProgress"
 
 
 --
--- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public.users
@@ -1968,98 +1947,98 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: ChallengeLike_userId_challengeId_key; Type: INDEX; Schema: public; Owner: -
+-- Name: ChallengeLike_userId_challengeId_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "ChallengeLike_userId_challengeId_key" ON public."ChallengeLike" USING btree ("userId", "challengeId");
 
 
 --
--- Name: ChallengeSolutions_number_key; Type: INDEX; Schema: public; Owner: -
+-- Name: ChallengeSolutions_number_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "ChallengeSolutions_number_key" ON public."ChallengeSolutions" USING btree (number);
 
 
 --
--- Name: CourseLike_userId_courseId_key; Type: INDEX; Schema: public; Owner: -
+-- Name: CourseLike_userId_courseId_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "CourseLike_userId_courseId_key" ON public."CourseLike" USING btree ("userId", "courseId");
 
 
 --
--- Name: CourseModule_courseId_number_key; Type: INDEX; Schema: public; Owner: -
+-- Name: CourseModule_courseId_number_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "CourseModule_courseId_number_key" ON public."CourseModule" USING btree ("courseId", number);
 
 
 --
--- Name: CourseResource_courseId_number_key; Type: INDEX; Schema: public; Owner: -
+-- Name: CourseResource_courseId_number_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "CourseResource_courseId_number_key" ON public."CourseResource" USING btree ("courseId", number);
 
 
 --
--- Name: Course_title_key; Type: INDEX; Schema: public; Owner: -
+-- Name: Course_title_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "Course_title_key" ON public."Course" USING btree (title);
 
 
 --
--- Name: LessonSolution_lessonId_key; Type: INDEX; Schema: public; Owner: -
+-- Name: LessonSolution_lessonId_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "LessonSolution_lessonId_key" ON public."LessonSolution" USING btree ("lessonId");
 
 
 --
--- Name: LessonVideo_miniModuleId_number_key; Type: INDEX; Schema: public; Owner: -
+-- Name: LessonVideo_miniModuleId_number_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "LessonVideo_miniModuleId_number_key" ON public."LessonVideo" USING btree ("miniModuleId", number);
 
 
 --
--- Name: MiniModule_courseModuleId_number_key; Type: INDEX; Schema: public; Owner: -
+-- Name: MiniModule_courseModuleId_number_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "MiniModule_courseModuleId_number_key" ON public."MiniModule" USING btree ("courseModuleId", number);
 
 
 --
--- Name: UserProfileImage_userId_key; Type: INDEX; Schema: public; Owner: -
+-- Name: UserProfileImage_userId_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "UserProfileImage_userId_key" ON public."UserProfileImage" USING btree ("userId");
 
 
 --
--- Name: Video_courseId_number_key; Type: INDEX; Schema: public; Owner: -
+-- Name: Video_courseId_number_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX "Video_courseId_number_key" ON public."Video" USING btree ("courseId", number);
 
 
 --
--- Name: _CompletedChallengesToCourse_B_index; Type: INDEX; Schema: public; Owner: -
+-- Name: _CompletedChallengesToCourse_B_index; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE INDEX "_CompletedChallengesToCourse_B_index" ON public."_CompletedChallengesToCourse" USING btree ("B");
 
 
 --
--- Name: users_email_key; Type: INDEX; Schema: public; Owner: -
+-- Name: users_email_key; Type: INDEX; Schema: public; Owner: brainly_code_database_user
 --
 
 CREATE UNIQUE INDEX users_email_key ON public.users USING btree (email);
 
 
 --
--- Name: ChallengeInstructions ChallengeInstructions_challengeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: ChallengeInstructions ChallengeInstructions_challengeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."ChallengeInstructions"
@@ -2067,7 +2046,7 @@ ALTER TABLE ONLY public."ChallengeInstructions"
 
 
 --
--- Name: ChallengeLike ChallengeLike_challengeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: ChallengeLike ChallengeLike_challengeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."ChallengeLike"
@@ -2075,7 +2054,7 @@ ALTER TABLE ONLY public."ChallengeLike"
 
 
 --
--- Name: ChallengeLike ChallengeLike_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: ChallengeLike ChallengeLike_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."ChallengeLike"
@@ -2083,7 +2062,7 @@ ALTER TABLE ONLY public."ChallengeLike"
 
 
 --
--- Name: ChallengeSolutions ChallengeSolutions_challengeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: ChallengeSolutions ChallengeSolutions_challengeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."ChallengeSolutions"
@@ -2091,7 +2070,7 @@ ALTER TABLE ONLY public."ChallengeSolutions"
 
 
 --
--- Name: CompletedChallenges CompletedChallenges_challengeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: CompletedChallenges CompletedChallenges_challengeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CompletedChallenges"
@@ -2099,7 +2078,7 @@ ALTER TABLE ONLY public."CompletedChallenges"
 
 
 --
--- Name: CompletedChallenges CompletedChallenges_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: CompletedChallenges CompletedChallenges_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CompletedChallenges"
@@ -2107,7 +2086,7 @@ ALTER TABLE ONLY public."CompletedChallenges"
 
 
 --
--- Name: CourseLike CourseLike_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: CourseLike CourseLike_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseLike"
@@ -2115,7 +2094,7 @@ ALTER TABLE ONLY public."CourseLike"
 
 
 --
--- Name: CourseLike CourseLike_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: CourseLike CourseLike_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseLike"
@@ -2123,7 +2102,7 @@ ALTER TABLE ONLY public."CourseLike"
 
 
 --
--- Name: CourseModule CourseModule_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: CourseModule CourseModule_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseModule"
@@ -2131,7 +2110,7 @@ ALTER TABLE ONLY public."CourseModule"
 
 
 --
--- Name: CourseRating CourseRating_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: CourseRating CourseRating_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseRating"
@@ -2139,7 +2118,7 @@ ALTER TABLE ONLY public."CourseRating"
 
 
 --
--- Name: CourseRating CourseRating_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: CourseRating CourseRating_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseRating"
@@ -2147,7 +2126,7 @@ ALTER TABLE ONLY public."CourseRating"
 
 
 --
--- Name: CourseResource CourseResource_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: CourseResource CourseResource_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."CourseResource"
@@ -2155,7 +2134,7 @@ ALTER TABLE ONLY public."CourseResource"
 
 
 --
--- Name: Course Course_creatorId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: Course Course_creatorId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Course"
@@ -2163,7 +2142,7 @@ ALTER TABLE ONLY public."Course"
 
 
 --
--- Name: LessonSolution LessonSolution_lessonId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: LessonSolution LessonSolution_lessonId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."LessonSolution"
@@ -2171,7 +2150,7 @@ ALTER TABLE ONLY public."LessonSolution"
 
 
 --
--- Name: LessonVideo LessonVideo_miniModuleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: LessonVideo LessonVideo_miniModuleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."LessonVideo"
@@ -2179,7 +2158,7 @@ ALTER TABLE ONLY public."LessonVideo"
 
 
 --
--- Name: Lesson Lesson_miniModuleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: Lesson Lesson_miniModuleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Lesson"
@@ -2187,7 +2166,7 @@ ALTER TABLE ONLY public."Lesson"
 
 
 --
--- Name: Message Message_receiverId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: Message Message_receiverId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Message"
@@ -2195,7 +2174,7 @@ ALTER TABLE ONLY public."Message"
 
 
 --
--- Name: Message Message_senderId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: Message Message_senderId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Message"
@@ -2203,7 +2182,7 @@ ALTER TABLE ONLY public."Message"
 
 
 --
--- Name: MiniModuleProgress MiniModuleProgress_miniModuleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: MiniModuleProgress MiniModuleProgress_miniModuleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."MiniModuleProgress"
@@ -2211,7 +2190,7 @@ ALTER TABLE ONLY public."MiniModuleProgress"
 
 
 --
--- Name: MiniModuleProgress MiniModuleProgress_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: MiniModuleProgress MiniModuleProgress_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."MiniModuleProgress"
@@ -2219,7 +2198,7 @@ ALTER TABLE ONLY public."MiniModuleProgress"
 
 
 --
--- Name: MiniModule MiniModule_courseModuleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: MiniModule MiniModule_courseModuleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."MiniModule"
@@ -2227,7 +2206,7 @@ ALTER TABLE ONLY public."MiniModule"
 
 
 --
--- Name: UserCourseProgress UserCourseProgress_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: UserCourseProgress UserCourseProgress_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserCourseProgress"
@@ -2235,7 +2214,7 @@ ALTER TABLE ONLY public."UserCourseProgress"
 
 
 --
--- Name: UserCourseProgress UserCourseProgress_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: UserCourseProgress UserCourseProgress_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserCourseProgress"
@@ -2243,7 +2222,7 @@ ALTER TABLE ONLY public."UserCourseProgress"
 
 
 --
--- Name: UserLessonProgress UserLessonProgress_lessonId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: UserLessonProgress UserLessonProgress_lessonId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserLessonProgress"
@@ -2251,7 +2230,7 @@ ALTER TABLE ONLY public."UserLessonProgress"
 
 
 --
--- Name: UserLessonProgress UserLessonProgress_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: UserLessonProgress UserLessonProgress_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserLessonProgress"
@@ -2259,7 +2238,7 @@ ALTER TABLE ONLY public."UserLessonProgress"
 
 
 --
--- Name: UserProfileImage UserProfileImage_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: UserProfileImage UserProfileImage_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."UserProfileImage"
@@ -2267,7 +2246,7 @@ ALTER TABLE ONLY public."UserProfileImage"
 
 
 --
--- Name: Video Video_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: Video Video_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."Video"
@@ -2275,7 +2254,7 @@ ALTER TABLE ONLY public."Video"
 
 
 --
--- Name: _CompletedChallengesToCourse _CompletedChallengesToCourse_A_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: _CompletedChallengesToCourse _CompletedChallengesToCourse_A_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."_CompletedChallengesToCourse"
@@ -2283,7 +2262,7 @@ ALTER TABLE ONLY public."_CompletedChallengesToCourse"
 
 
 --
--- Name: _CompletedChallengesToCourse _CompletedChallengesToCourse_B_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: _CompletedChallengesToCourse _CompletedChallengesToCourse_B_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."_CompletedChallengesToCourse"
@@ -2291,7 +2270,7 @@ ALTER TABLE ONLY public."_CompletedChallengesToCourse"
 
 
 --
--- Name: userModuleProgress userModuleProgress_courseModuleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: userModuleProgress userModuleProgress_courseModuleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."userModuleProgress"
@@ -2299,7 +2278,7 @@ ALTER TABLE ONLY public."userModuleProgress"
 
 
 --
--- Name: userModuleProgress userModuleProgress_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: userModuleProgress userModuleProgress_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public."userModuleProgress"
@@ -2307,7 +2286,7 @@ ALTER TABLE ONLY public."userModuleProgress"
 
 
 --
--- Name: users users_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: users users_courseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: brainly_code_database_user
 --
 
 ALTER TABLE ONLY public.users
@@ -2315,8 +2294,43 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: brainly_code_database_user
+--
+
+REVOKE USAGE ON SCHEMA public FROM PUBLIC;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR SEQUENCES; Type: DEFAULT ACL; Schema: -; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON SEQUENCES TO brainly_code_database_user;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR TYPES; Type: DEFAULT ACL; Schema: -; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TYPES TO brainly_code_database_user;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR FUNCTIONS; Type: DEFAULT ACL; Schema: -; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON FUNCTIONS TO brainly_code_database_user;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: -; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres GRANT ALL ON TABLES TO brainly_code_database_user;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 9EAhQa6psXpdO4xyIZRRR3vhn7BznL7Wgmx82EOBy8FISnlpgEKEkX1uDjj75RH
+\unrestrict 2MedFiOyhwAhlvQ2khXN8xY6eezgMGwk1obaD1vTWA6TUV5cM08RP7g6MJIWDtb
 

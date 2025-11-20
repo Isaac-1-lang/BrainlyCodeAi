@@ -304,6 +304,8 @@ export class ChallengesService {
     }
   }
 
+
+
   async getChallengeSolution(challengeId: number) {
     const solution = await this.prisma.challengeSolutions.findMany({
       where: {
@@ -312,6 +314,43 @@ export class ChallengesService {
     })
 
     return solution;
+  }
+
+  async deleteChallengeSolution(id: number) {
+    try {
+      await this.prisma.challengeSolutions.delete({
+        where: {
+          id: id
+        }
+      })
+
+      return {
+        message: "Solution deleted successfully"
+      }
+    } catch (error) {
+      console.log(error)
+      throw new NotFoundException("Failed to delete")
+    }
+  }
+
+  async updateSolution(dto: {id: number, solution: string}) {
+    try {
+      await  this.prisma.challengeSolutions.update({
+        where: {
+          id: dto.id
+        },
+        data: {
+          solution: dto.solution
+        }
+      })
+  
+      return {
+        message: "Update successfull"
+      }
+    } catch (error) {
+      console.log(error);
+      throw new NotFoundException("Failed to delete solution");
+    }
   }
 
   async createChallengeCompleter(dto: CreateChallengeCompleter) {

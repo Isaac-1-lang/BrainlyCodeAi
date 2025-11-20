@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { BadRequestException, Body, Controller, Get, Param, Patch,Post, Put, Delete, UseInterceptors, UploadedFile, UseGuards} from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Param, Patch,Post, Put, Delete, UseInterceptors, UploadedFile, UseGuards, NotFoundException} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { ChallengesService } from './challenges.service';
@@ -77,6 +77,20 @@ async createChallenge(
   @Post('solution')
   createChallengeSolution(@Body() dto: CreateChallengeSolutionDto) {
     return this.challengeService.createChallengeSolution(dto);
+  }
+
+  @Delete('solution/:id')
+  deleteChallengeSolution(@Param('id') id: number) {
+    if(isNaN(Number(id))) {
+      throw new BadRequestException("Id should be a number");
+    }
+
+    return this.challengeService.deleteChallengeSolution(Number(id));
+  }
+
+  @Patch('solution')
+  updateChallengeSolution(@Body() dto: {id: number, solution: string}) {
+    return this.challengeService.updateSolution(dto);
   }
 
   @Get('/solution/:challengeId')

@@ -52,7 +52,7 @@ async function bootstrap() {
   SwaggerModule.setup("api", app, document);
 
   const server = app.getHttpServer();
-  server.setTimeout(20 * 60 * 1000); // 20 mins (you had 10, but updated to match comment)
+  server.setTimeout(20 * 60 * 1000); 
 
   await app.listen(process.env.PORT || 3000);
   console.log(`Application is running on: ${await app.getUrl()}`);
