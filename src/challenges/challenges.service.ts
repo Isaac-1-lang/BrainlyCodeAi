@@ -24,10 +24,12 @@ export class ChallengesService {
         cloudinary.uploader.upload(base64File ,
           {
             folder: "challenge-documents",
-            resource_type: "raw",
+            resource_type: "auto",  
             use_filename: true,
             public_id: cleanName,
             filename_override: cleanName,
+            type: "upload",            // <-- force public file
+            access_mode: "public", 
             
           },
           (error, result: any) => {
