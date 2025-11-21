@@ -8,9 +8,10 @@ export class SocketIoAdapter extends IoAdapter {
     this.createIOServer(app.getHttpServer(), {
       cors: {
         origin: [
+          "https://brainlycode.dpdns.org",
           "https://brainly-code.onrender.com",
-          "http://localhost:5173", // For local dev
-          "https://backend-hx6c.onrender.com", // If needed for same-origin testing
+          "http://localhost:5173", 
+          "https://backend-hx6c.onrender.com", 
         ],
         credentials: true, // Required if using cookies/auth (matches your current config)
       },
