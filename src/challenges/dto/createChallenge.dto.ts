@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsOptional, IsBoolean } from "class-validator";
+import { IsNotEmpty, IsString, IsOptional, IsBoolean, IsInt } from "class-validator";
 import { Transform } from "class-transformer";
 
 export class CreateChallengeDto {
@@ -9,6 +9,10 @@ export class CreateChallengeDto {
   @IsNotEmpty()
   @IsString()
   difficulty!: string;
+
+  @IsInt()
+  @IsOptional()
+  marks!: number;
 
   @IsNotEmpty()
   @IsString()

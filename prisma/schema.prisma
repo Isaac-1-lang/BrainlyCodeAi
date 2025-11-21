@@ -218,6 +218,7 @@ model Challenge {
   relation     String?
   likes        Int                     @default(0)
   difficulty   String
+  marks        Int
   useEditor    Boolean?                @default(false)
   documentUrl  String?
   useInput     Boolean?                @default(false)
