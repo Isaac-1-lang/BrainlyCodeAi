@@ -30,6 +30,7 @@ async function bootstrap() {
     origin: [
       "https://brainlycode.dpdns.org",
       "http://localhost:5173",
+      "https://frontend-mdy5.onrender.com",
       "https://backend-hx6c.onrender.com",
     ],
     credentials: true,
