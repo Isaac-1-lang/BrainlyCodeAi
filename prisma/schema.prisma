@@ -57,7 +57,6 @@ model Course {
   likes               Int                   @default(0)
   completions         Int                   @default(0)
   creatorId           Int
-  credits             Int?                   @default(0)
   creator             User                  @relation("CreatedCourses", fields: [creatorId], references: [id])
   likedBy             CourseLike[]
   modules             CourseModule[]
@@ -218,7 +217,6 @@ model Challenge {
   relation     String?
   likes        Int                     @default(0)
   difficulty   String
-  marks        Int                     @default(0)
   useEditor    Boolean?                @default(false)
   documentUrl  String?
   useInput     Boolean?                @default(false)
@@ -283,7 +281,7 @@ model ChallengeInstructions {
 
 model ChallengeSolutions {
   id          Int       @id @default(autoincrement())
-  number      Int
+  number      Int       @unique
   solution    String
   challengeId Int
   challenge   Challenge @relation(fields: [challengeId], references: [id])
@@ -296,7 +294,7 @@ model CompletedChallenges {
   createdAt    DateTime  @default(now())
   url          String?
   userSolution String?
-  correct      Status     @default(JUST)
+  correct      Status    @default(JUST)
   challenge    Challenge @relation(fields: [challengeId], references: [id])
   user         User      @relation(fields: [userId], references: [id])
   Course       Course[]  @relation("CompletedChallengesToCourse")
