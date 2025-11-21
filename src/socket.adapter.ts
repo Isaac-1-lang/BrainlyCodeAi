@@ -9,7 +9,7 @@ export class SocketIoAdapter extends IoAdapter {
       cors: {
         origin: [
           "https://brainlycode.dpdns.org",
-          "https://brainly-code.onrender.com",
+          "https://brainlycode.dpdns.org/",
           "http://localhost:5173", 
           "https://backend-hx6c.onrender.com", 
         ],
