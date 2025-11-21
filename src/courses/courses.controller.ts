@@ -9,7 +9,7 @@ import {
   Post,
   UseGuards,
   Delete,
-  BadRequestException, 
+  BadRequestException,
 } from "@nestjs/common";
 import { CoursesService } from "./courses.service";
 import { JwtGuard } from "src/guard";
@@ -19,7 +19,7 @@ import { Headers } from '@nestjs/common';
 
 @Controller('courses')
 export class CoursesController {
-  constructor(private coursesService: CoursesService) {}
+  constructor(private coursesService: CoursesService) { }
 
   @UseGuards(JwtGuard)
   @Post('create')
@@ -31,8 +31,13 @@ export class CoursesController {
   }
 
   @Get('')
-  getCourses() {
-    return this.coursesService.getCourses();
+  async getCourses() {
+    try {
+      return await this.coursesService.getCourses();
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+      throw error;
+    }
   }
 
   @UseGuards(JwtGuard)
@@ -41,23 +46,23 @@ export class CoursesController {
     return this.coursesService.getCoursesByCreator(userId);
   }
 
-@UseGuards(JwtGuard)
-@Get('/liked-courses')
-async getUserLikedCourses(
-  @Headers() reqHeaders: any,
-  @GetUser('id') userId: any,
-) {
-  
-  try {
-    const id = Number(userId);
-    if (isNaN(id)) throw new BadRequestException('Invalid user id');
-    return await this.coursesService.getUserLikedCourses(id);
-  } catch (error) {
-    console.error('Failed to get liked courses:', error);
-    throw error;
+  @UseGuards(JwtGuard)
+  @Get('/liked-courses')
+  async getUserLikedCourses(
+    @Headers() reqHeaders: any,
+    @GetUser('id') userId: any,
+  ) {
+
+    try {
+      const id = Number(userId);
+      if (isNaN(id)) throw new BadRequestException('Invalid user id');
+      return await this.coursesService.getUserLikedCourses(id);
+    } catch (error) {
+      console.error('Failed to get liked courses:', error);
+      throw error;
+    }
   }
-}
- 
+
   @Get('/:id')
   getCourseById(@Param('id', ParseIntPipe) id: number) {
     return this.coursesService.getCourseById(id);
@@ -67,7 +72,7 @@ async getUserLikedCourses(
   deleteCourse(@Param('id') id: string) {
     const courseId = parseInt(id);
     if (isNaN(courseId)) throw new BadRequestException('Invalid course ID');
-    return this.coursesService.deleteCourse(courseId); 
+    return this.coursesService.deleteCourse(courseId);
   }
 
   @UseGuards(JwtGuard)
@@ -87,13 +92,13 @@ async getUserLikedCourses(
   }
 
   @Patch('/progress/:id')
-  trackUserCourseProgress(@Param('id') id: number, @Body() userId: number ) {
-    return this.coursesService.trackUserCourseProgress(id, userId )
+  trackUserCourseProgress(@Param('id') id: number, @Body() userId: number) {
+    return this.coursesService.trackUserCourseProgress(id, userId)
   }
 
   @Get('/progress/:courseId')
   GetLessonProgress(@Param('courseId') courseId: number) {
-    if(isNaN(courseId)) {
+    if (isNaN(courseId)) {
       throw new Error("Invalid lessonId, should be number");
     }
 
