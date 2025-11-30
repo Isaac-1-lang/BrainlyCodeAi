@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { BadRequestException, Body, Controller, Get, Param, Patch,Post, Put, Delete, UseInterceptors, UploadedFile, UseGuards} from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Param, Patch, Post, Put, Delete, UseInterceptors, UploadedFile, UseGuards, NotFoundException } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { ChallengesService } from './challenges.service';
@@ -9,17 +9,17 @@ import { JwtGuard } from 'src/guard';
 
 @Controller('challenges')
 export class ChallengesController {
-  constructor( private challengeService: ChallengesService,
-    private cloudinaryService: CloudinaryService, ){}
-   
-@Post()
-@UseInterceptors(FileInterceptor('file'))
-async createChallenge(
-  @UploadedFile() file: Express.Multer.File,
-  @Body() dto: CreateChallengeDto,
-) {
-  return this.challengeService.createChallenge(dto, file);
-}
+  constructor(private challengeService: ChallengesService,
+    private cloudinaryService: CloudinaryService,) { }
+
+  @Post()
+  @UseInterceptors(FileInterceptor('file'))
+  async createChallenge(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() dto: CreateChallengeDto,
+  ) {
+    return this.challengeService.createChallenge(dto, file);
+  }
 
   @UseGuards(JwtGuard)
   @Patch(':id/like')
@@ -35,8 +35,13 @@ async createChallenge(
     return this.challengeService.getChallenges();
   }
 
+  @Get('leaderboard')
+  getLeaderboard() {
+    return this.challengeService.getLeaderboard();
+  }
+
   @Get('/:id')
-  getChallengeById(@Param('id') id: string){
+  getChallengeById(@Param('id') id: string) {
     return this.challengeService.getChallengeById(id)
   }
 
@@ -51,8 +56,8 @@ async createChallenge(
   }
 
   @Get('/instruction/:challengeId')
-  getChallengeInstruction( @Param('challengeId') challengeId: number ) {
-    if(isNaN(challengeId)) {
+  getChallengeInstruction(@Param('challengeId') challengeId: number) {
+    if (isNaN(challengeId)) {
       throw new BadRequestException("Invalid ChallengeId, must be number")
     }
 
@@ -79,9 +84,23 @@ async createChallenge(
     return this.challengeService.createChallengeSolution(dto);
   }
 
+  @Delete('solution/:id')
+  deleteChallengeSolution(@Param('id') id: number) {
+    if (isNaN(Number(id))) {
+      throw new BadRequestException("Id should be a number");
+    }
+
+    return this.challengeService.deleteChallengeSolution(Number(id));
+  }
+
+  @Patch('solution')
+  updateChallengeSolution(@Body() dto: { id: number, solution: string }) {
+    return this.challengeService.updateSolution(dto);
+  }
+
   @Get('/solution/:challengeId')
-  getChallengeSolution( @Param('challengeId') challengeId: number ) {
-    if(isNaN(challengeId)) {
+  getChallengeSolution(@Param('challengeId') challengeId: number) {
+    if (isNaN(challengeId)) {
       throw new BadRequestException("Invalid ChallengeId, must be number")
     }
 
@@ -91,10 +110,10 @@ async createChallenge(
   @Post('/challenge-completer')
   createChallengeCompleter(@Body() dto: CreateChallengeCompleter) {
     return this.challengeService.createChallengeCompleter(dto);
-  } 
+  }
 
   @Post('/challenge-instruction/:instructionId')
-  completeInstruction (@Param('instructionId') instructionId: number) {
+  completeInstruction(@Param('instructionId') instructionId: number) {
     return this.challengeService.completeStep(instructionId);
   }
 

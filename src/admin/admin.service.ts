@@ -1,7 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { EditUserDto } from './dto';
+import { url } from 'inspector';
+import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class AdminService {
@@ -131,16 +133,127 @@ export class AdminService {
 
       const someObj = {
         user: await this.prisma.user.findUnique({
-            where: { id: challengeCompleter.userId }
+            where: { id: challengeCompleter.userId },
+            select: {
+              id: true,
+              email: true,
+              username: true,
+              photo: true,
+              provider: true
+            }
           }),
-  
-        completionTime: challengeCompleter.createdAt
+        id: challengeCompleter.id,
+        completionTime: challengeCompleter.createdAt,
+        url: challengeCompleter.url,
+        solution: challengeCompleter.userSolution,
+        correct: challengeCompleter.correct
       }
+
+      console.log(someObj)
       return someObj
     })
   );
 
   return completerUsers;
+}
+
+async correctCompleters(completerId: number, dto: {userId: number}) {
+  console.log(completerId);
+  const completer = await this.prisma.completedChallenges.findFirst({
+    where: {
+      id: completerId
+    }
+  })
+
+  const challenge = await this.prisma.challenge.findUnique({
+    where: {
+      id: completer?.challengeId
+    }
+  })
+
+  if(!completer) {
+    throw new NotFoundException("Completion not found")
+  }
+
+  try {
+    await this.prisma.completedChallenges.update({
+      where: {
+        id: completerId
+      },
+      data: {
+        correct: "WRIGHT"
+      }
+    })
+
+    await this.prisma.message.create({
+      data: {
+        content: `Your answer for the ${challenge?.title} challenge was correct`,
+        type: 'text',
+        senderId: 2,
+        receiverId: dto.userId,
+      }
+    });
+
+    return {
+      message: "Done correcting completer"
+    }
+  } catch (error) {
+    throw new InternalServerErrorException("Unable to correct")
+  }
+}
+
+async rejectAnswer(answerId: number, dto: {userId: number}) {
+   const answer = await this.prisma.completedChallenges.findUnique({
+    where:{
+      id: answerId
+    }
+   })
+
+   if(!answer) {
+    throw new BadRequestException("No such answer")
+   }
+
+   const challenge = await this.prisma.challenge.findUnique({
+    where: {
+      id: answer?.challengeId
+    }
+  })
+   
+   if(!answer) {
+    throw new NotFoundException("Answer was not provided")
+   }
+
+   try {
+    await this.prisma.completedChallenges.update({
+      where: {
+        id: answerId
+      },
+      data: {
+        correct: "WRONG"
+      }
+    })
+
+    await this.prisma.message.create({
+      data: {
+        content: `Sorry your answer for the ${challenge?.title} challenge has reached us but it needs updating ie Its not correct so far.
+        You can talk to me if you need any help`,
+        type: 'text',
+        senderId: 2,
+        receiverId: dto.userId,
+      }
+    });
+
+    return (
+      await this.prisma.completedChallenges.delete(
+      {
+        where: {
+          id: answerId
+        }
+      }
+     ))
+   } catch (error) {
+    throw new InternalServerErrorException("Failed to sign reject answer")
+   }
 }
 
 }

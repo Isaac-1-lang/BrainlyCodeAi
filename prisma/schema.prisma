@@ -217,10 +217,12 @@ model Challenge {
   relation     String?
   likes        Int                     @default(0)
   difficulty   String
-  useEditor    Boolean?                 @default(false)
-  useInput     Boolean?   @default(false)
-  instructions ChallengeInstructions[]
+  marks        Int                     @default(0)
+  useEditor    Boolean?                @default(false)
   documentUrl  String?
+  useInput     Boolean?                @default(false)
+  takesUrl     Boolean?                @default(false)
+  instructions ChallengeInstructions[]
   likesList    ChallengeLike[]
   solutions    ChallengeSolutions[]
   completions  CompletedChallenges[]
@@ -287,13 +289,17 @@ model ChallengeSolutions {
 }
 
 model CompletedChallenges {
-  id          Int       @id @default(autoincrement())
-  userId      Int
-  challengeId Int
-  createdAt   DateTime  @default(now())
-  challenge   Challenge @relation(fields: [challengeId], references: [id])
-  user        User      @relation(fields: [userId], references: [id])
-  Course      Course[]  @relation("CompletedChallengesToCourse")
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  challengeId  Int
+  createdAt    DateTime  @default(now())
+  url          String?
+  userSolution String?
+  correct      Status    @default(JUST)
+  marks        Int       @default(0)
+  challenge    Challenge @relation(fields: [challengeId], references: [id])
+  user         User      @relation(fields: [userId], references: [id])
+  Course       Course[]  @relation("CompletedChallengesToCourse")
 }
 
 enum Role {
@@ -308,6 +314,7 @@ enum Level {
   ADVANCED
 }
 
+<<<<<<< HEAD
 // Vector storage for RAG system
 model KnowledgeBase {
   id          Int      @id @default(autoincrement())
@@ -347,4 +354,10 @@ model FineTuningJob {
   updatedAt   DateTime @updatedAt
 
   @@map("fine_tuning_jobs")
+=======
+enum Status {
+  WRIGHT
+  WRONG
+  JUST
+>>>>>>> 5b08b6571daf9f2376c8db0d152f1c3c672f4f25
 }

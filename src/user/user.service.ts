@@ -125,4 +125,19 @@ async editUser(userId: number, dto: EditUserDto) {
       },
     });
   }
+
+  async getCommunityUsers() {
+     try {
+      return await this.prisma.user.findMany({
+        select: {
+          id: true,
+          email: true,
+          username: true,
+          role: true
+        }
+       });
+     } catch (error) {
+      throw new NotFoundException("Couldn't find the users")
+     }
+  }
 }

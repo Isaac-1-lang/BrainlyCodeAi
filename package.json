@@ -29,10 +29,14 @@
     "test:e2e": "dotenv -e .env.test -- jest --watch --no-catch --config ./test/jest-e2e.json"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@langchain/community": "^1.0.0",
     "@langchain/core": "^1.0.1",
     "@langchain/openai": "^1.0.0",
     "@nestjs/common": "^11.1.1",
+=======
+    "@nestjs/common": "^11.1.6",
+>>>>>>> 5b08b6571daf9f2376c8db0d152f1c3c672f4f25
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.1",
     "@nestjs/jwt": "^11.0.0",
