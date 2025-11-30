@@ -217,6 +217,7 @@ model Challenge {
   relation     String?
   likes        Int                     @default(0)
   difficulty   String
+  marks        Int                     @default(0)
   useEditor    Boolean?                @default(false)
   documentUrl  String?
   useInput     Boolean?                @default(false)
@@ -295,6 +296,7 @@ model CompletedChallenges {
   url          String?
   userSolution String?
   correct      Status    @default(JUST)
+  marks        Int       @default(0)
   challenge    Challenge @relation(fields: [challengeId], references: [id])
   user         User      @relation(fields: [userId], references: [id])
   Course       Course[]  @relation("CompletedChallengesToCourse")
