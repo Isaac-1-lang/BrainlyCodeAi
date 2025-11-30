@@ -12,7 +12,9 @@ import { Server, Socket } from 'socket.io';
     origin: [
       'http://localhost:5173',
       'https://frontend-mdy5.onrender.com',
-      'https://brainly-code.onrender.com'
+      'https://brainly-code.onrender.com',
+      'https://brainlycode.dpdns.org',
+      'https://brainlycode.dpdns.org/'
     ],
     methods: ['GET', 'POST'],
     credentials: true,
@@ -35,13 +37,13 @@ export class ChatGateway {
     const { senderId, receiverId, content, type } = data;
     const roomId = [senderId, receiverId].sort().join('-'); // unique room
 
-  const message = {
-    senderId: senderId,
-    receiverId: receiverId,
-    content,
-    type,
-    id: Date.now(),
-  };
+    const message = {
+      senderId: senderId,
+      receiverId: receiverId,
+      content,
+      type,
+      id: Date.now(),
+    };
 
     this.server.to(roomId).emit('newDM', message);
   }

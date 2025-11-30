@@ -20,7 +20,6 @@ export class AuthService {
     private config: ConfigService,
   ) {}
 
-  // --- SIGNUP ---
   async signup(dto: AuthDto): Promise<{ access_token: string; refresh_token: string }> {
     try {
       const hash = await argon.hash(dto.password);
@@ -62,7 +61,6 @@ export class AuthService {
     }
   }
 
-  // --- LOGIN ---
   async login(dto: LoginDto): Promise<{ access_token: string; refresh_token: string; user: { id: number; email: string; role: string | null; isPremium: boolean } }> {
     const user = await this.prisma.user.findUnique({
       where: { email: dto.email },
@@ -87,7 +85,6 @@ export class AuthService {
     return { access_token: access_token, refresh_token: refresh_token, user: { id: user.id, email: user.email, role: user.role ?? "USER", isPremium: user.isPremium } }
   }
 
-  // Accepts the refresh token string (from cookie), verifies it, and returns new tokens.
   async refresh(refreshToken: string | undefined): Promise<{ access_token: string; refresh_token: string; user: { id: number; email: string; role: string | null; isPremium: boolean } }> {
     if (!refreshToken) {
       throw new UnauthorizedException('Refresh token missing');
@@ -109,7 +106,6 @@ export class AuthService {
 
       if (!user) throw new UnauthorizedException('Invalid refresh token - user not found');
 
-      // Issue new tokens (rotates refresh token);
         const { access_token, refresh_token } = await this.generateTokens(user.id, user.email, user.role ?? 'USER', user.isPremium);
         return { access_token: access_token, refresh_token: refresh_token, user: { id: user.id, email: user.email, role: user.role ?? "USER", isPremium: user.isPremium } }
     } catch (err) {
@@ -117,7 +113,6 @@ export class AuthService {
     }
   }
 
-  // --- Generate tokens helper ---
   private async generateTokens(userId: number, email: string, role: string, isPremium: boolean) {
     const accessPayload = { sub: userId, email, role, isPremium };
     const refreshPayload = { sub: userId };
@@ -155,8 +150,6 @@ export class AuthService {
     });
   }
 
-  // --- LOGOUT ---
-  // Note: if you store refresh tokens in DB for revocation you should delete/invalidate here.
   logout() {
     return { message: 'Logged out successfully' };
   }

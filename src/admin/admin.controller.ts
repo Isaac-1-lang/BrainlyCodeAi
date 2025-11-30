@@ -1,5 +1,4 @@
-/* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { AdminService } from './admin.service';
 import { AdminGuard, JwtGuard } from 'src/guard';
 import { EditUserDto } from './dto';
@@ -47,8 +46,34 @@ export class AdminController {
   }
 
   @UseGuards(JwtGuard, AdminGuard)
+  @Patch('/challenge-completers')
+  correctCompleters(
+    @Body() dto: {userId, id}
+) {
+    const completerId = Number(dto.id);
+    console.log(completerId, dto.userId);
+    if(isNaN(dto.id) || isNaN(dto.userId)){
+      throw new BadRequestException("UserId and answer id must be numbers")
+    }
+
+    return this.adminServices.correctCompleters(completerId, dto);
+  }
+
+  @UseGuards(JwtGuard, AdminGuard)
   @Get('/graph-stats')
   getGraphStats() {
     return this.adminServices.getGraphStats();
   }
+
+  @UseGuards(JwtGuard, AdminGuard) 
+  @Patch('/reject')
+  rejectAnswer(
+    @Body() dto: {userId: number, id: number}
+  ) {
+    const answerId = Number(dto.id);
+    console.log("answer id is:", answerId);
+    console.log("user id  is:", dto.userId)
+    return this.adminServices.rejectAnswer(answerId, dto);
+  }
+
 }

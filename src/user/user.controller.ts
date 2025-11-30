@@ -53,5 +53,10 @@ export class UserController {
 //payment verification
     return this.userService.upgradeUserToPro(userId);
   }
+
+  @Get() 
+  getCommunityUsers() {
+    return this.userService.getCommunityUsers();
+  }
  
 }

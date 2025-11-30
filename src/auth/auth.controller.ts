@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {
   Body,
   Controller,
@@ -18,7 +17,6 @@ import { jwtDecode } from "jwt-decode";
 export class AuthController {
   constructor(private authService: AuthService) { }
 
-  // --- SIGNUP ---
   @Post("signup")
   async signup(@Res() res: Response, @Body() dto: AuthDto) {
     const { access_token, refresh_token } = await this.authService.signup(dto);
@@ -56,7 +54,6 @@ export class AuthController {
     const { access_token, refresh_token, user } = await this.authService.refresh(refreshToken);
 
     const isProd = process.env.NODE_ENV === 'production';
-    // Rotate cookie as well, to persist the newly issued refresh token
     res.cookie('refresh_token', refresh_token, {
       httpOnly: true,
       secure: isProd,

@@ -33,9 +33,8 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       "https://brainlycode.dpdns.org",
-      "https://brainlycode.dpdns.org",
-      "https://frontend-mdy5.onrender.com",
       "http://localhost:5173",
+      "https://frontend-mdy5.onrender.com",
       "https://backend-hx6c.onrender.com",
     ],
     credentials: true,
@@ -56,7 +55,7 @@ async function bootstrap() {
   SwaggerModule.setup("api", app, document);
 
   const server = app.getHttpServer();
-  server.setTimeout(20 * 60 * 1000); // 20 mins (you had 10, but updated to match comment)
+  server.setTimeout(20 * 60 * 1000); 
 
 await app.listen(PORT);
   console.log(`Application is running on: ${await app.getUrl()}`);
