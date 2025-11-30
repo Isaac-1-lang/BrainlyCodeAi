@@ -307,3 +307,44 @@ enum Level {
   INTERMEDIATE
   ADVANCED
 }
+
+// Vector storage for RAG system
+model KnowledgeBase {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String
+  type        String   // 'course', 'lesson', 'challenge', 'resource'
+  sourceId    Int?     // Reference to the original content ID
+  sourceType  String?  // 'Course', 'Lesson', 'Challenge', etc.
+  embedding   Unsupported("vector(1536)")? // OpenAI embedding vector
+  metadata    Json?    // Additional metadata
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("knowledge_base")
+}
+
+model ChatSession {
+  id          Int      @id @default(autoincrement())
+  userId      Int?
+  sessionId   String   @unique
+  messages    Json     // Array of chat messages
+  context     Json?    // RAG context used
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("chat_sessions")
+}
+
+model FineTuningJob {
+  id          Int      @id @default(autoincrement())
+  name        String
+  status      String   // 'pending', 'running', 'completed', 'failed'
+  modelId     String?  // OpenAI fine-tuned model ID
+  trainingData Json   // Training data used
+  results     Json?    // Training results and metrics
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("fine_tuning_jobs")
+}

@@ -1,14 +1,21 @@
 import OpenAI from "openai";
 import 'dotenv/config';
 
+// Validate API key BEFORE initializing the client
+// Note: Using OpenRouter API (https://openrouter.ai)
+if (!process.env.DEEPSEEK_API_KEY) {
+  throw new Error("OpenRouter API key is not set in environment variables. Please set DEEPSEEK_API_KEY (or OPENROUTER_API_KEY) in your .env file.");
+}
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-if (!process.env.OPENAI_API_KEY) {
-  throw new Error("OpenAI API key is not set in environment variables");
+// Check if API key is empty or just whitespace
+if (!process.env.DEEPSEEK_API_KEY.trim()) {
+  throw new Error("OpenRouter API key is empty. Please provide a valid DEEPSEEK_API_KEY (or OPENROUTER_API_KEY) in your .env file.");
 }
-if(!openai) {
-  throw new Error("OpenAI client is not initialized");
-}
+
+const openai = new OpenAI({ 
+  apiKey: process.env.DEEPSEEK_API_KEY.trim(), 
+  baseURL: "https://openrouter.ai/api/v1" 
+});
 
 export async function askTutor(userInput, memoryContext) {
   const systemPrompt = `
@@ -21,7 +28,7 @@ export async function askTutor(userInput, memoryContext) {
 
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "deepseek/deepseek-r1-0528:free",
       messages: [
         { role: "system", content: systemPrompt },
         ...(memoryContext || []),
